@@ -1,0 +1,36 @@
+{
+    "user": {
+        "get": {
+            "getUser": "/users/user/:id",
+            "getUsers": "/users"
+        },
+        "add": {
+            "addUser": "/adduser"
+        },
+        "delete": {
+            "deleteUser": "/users/user/delete/:id"
+        },
+        "update": {
+            "updateUser": "/users/updateuser/:id"
+        },
+        "login": {
+            "loginUser": "/user/login"
+        }
+    },
+    "product": {
+        "get": {
+            "getProducts": "/products",
+            "getProduct": "/products/product/:id"
+        },
+        "addProduct": "/prodcuts/addproduct",
+        "updateProduct": "/products/updateproduct/:id"
+    },
+    "customer": {
+        "get": {
+            "getCustomers": "/customers",
+            "getCustomer": "/customers/customer/:id"
+        },
+        "addCustomer": "/customers/addcustomer",
+        "updateCustomer": "/customers/updatecustomer/:id"
+    }
+}
