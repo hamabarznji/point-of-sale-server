@@ -32,5 +32,13 @@
         },
         "addCustomer": "/customers/addcustomer",
         "updateCustomer": "/customers/updatecustomer/:id"
+    },
+    "employee": {
+        "get": {
+            "getEmployees": "/employees",
+            "getEmployee": "/employees/employee/:id"
+        },
+        "addEmployee": "/employees/addemployee",
+        "updateEmployee": "/employees/updateemployee/:id"
     }
 }

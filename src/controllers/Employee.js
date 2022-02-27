@@ -1,0 +1,58 @@
+const Employee = require("../services/Employee");
+
+async function addEmployee(req, res, next) {
+    try {
+        const employee = await Employee.addEmployee({
+            id: req.body.id,
+            name: req.body.name,
+            store_id: req.body.store_id,
+            phone: req.body.address,
+            salary: req.body.salary,
+            address: req.body.address,
+        });
+
+        res.status(200).send(employee);
+    } catch (erorr) {
+        res.status(404).send(erorr);
+    }
+}
+
+async function getEmployees(req, res, next) {
+    try {
+        const employees = await Employee.getEmployees();
+
+        res.status(200).send(employees);
+    } catch (erorr) {
+        res.status(404).send(erorr);
+    }
+}
+
+async function getEmployee(req, res, next) {
+    try {
+        console.log("here");
+        const employee = await Employee.getEmployee(1);
+
+        res.status(200).send(employee);
+    } catch (erorr) {
+        res.status(404).send(erorr);
+    }
+}
+
+async function updateEmployee(req, res, next) {
+    try {
+        const employee = await Employee.updateEmployee({
+            id: req.body.id,
+            name: req.body.name,
+            store_id: req.body.store_id,
+            phone: req.body.address,
+            salary: req.body.salary,
+            address: req.body.address,
+        });
+
+        res.status(200).send(employee);
+    } catch (erorr) {
+        res.status(404).send(erorr);
+    }
+}
+
+module.exports = { updateEmployee, addEmployee, getEmployee, getEmployees };
