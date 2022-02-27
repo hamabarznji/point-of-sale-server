@@ -1,61 +1,15 @@
 const Product = require("../models/Product");
 
-async function addProduct({
-    id,
-    name,
-    supplier_id,
-    category_id,
-    price,
-    qty,
-    size,
-    color,
-    weight,
-    date,
-} = {}) {
+async function addProduct(product) {
     try {
-        return await Product.create({
-            id,
-            name,
-            supplier_id,
-            category_id,
-            price,
-            qty,
-            size,
-            color,
-            weight,
-            date,
-        });
+        return await Product.create(product);
     } catch (err) {
         return err.message;
     }
 }
-async function updateProduct({
-    id,
-    name,
-    supplier_id,
-    category_id,
-    price,
-    qty,
-    size,
-    color,
-    weight,
-    date,
-} = {}) {
+async function updateProduct(product) {
     try {
-        return await Product.update(
-            {
-                name,
-                supplier_id,
-                category_id,
-                price,
-                qty,
-                size,
-                color,
-                weight,
-                date,
-            },
-            { where: { id: id } }
-        );
+        return await Product.update(product, { where: { id: product.id } });
     } catch (err) {
         return err.message;
     }

@@ -24,16 +24,17 @@ const login = async (username) => {
     }
 };
 
-const addUser = async ({ username, password, role, store_id }) => {
+const addUser = async (user) => {
+    console.log(user, "hereeeeeeeeeeeeeeeeeee");
     try {
-        return await User.create(username, password, role, store_id);
+        return await User.create(user);
     } catch (err) {
         return err.message;
     }
 };
-const updateUser = async (username, password) => {
+const updateUser = async (user) => {
     try {
-        return await User.update(password);
+        return await User.update(user, { where: { id: user.id } });
     } catch (err) {
         return err.message;
     }
@@ -46,4 +47,4 @@ const deleteUser = async (id) => {
     }
 };
 
-module.exports = { getUsers, getUser, addUser, deleteUser, login };
+module.exports = { getUsers, getUser, addUser, deleteUser, login, updateUser };

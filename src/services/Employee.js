@@ -24,8 +24,9 @@ async function addEmployee(employee) {
     }
 }
 async function updateEmployee(employee) {
+    console.log(employee.id);
     try {
-        return await Employee.update(employee);
+        return await Employee.update(employee, { where: { id: employee.id } });
     } catch (err) {
         return err.message;
     }

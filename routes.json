@@ -4,9 +4,8 @@
             "getUser": "/users/user/:id",
             "getUsers": "/users"
         },
-        "add": {
-            "addUser": "/adduser"
-        },
+        "addUser": "/adduser",
+        "updateUser": "/users/updateuser/:id",
         "delete": {
             "deleteUser": "/users/user/delete/:id"
         },
@@ -40,5 +39,18 @@
         },
         "addEmployee": "/employees/addemployee",
         "updateEmployee": "/employees/updateemployee/:id"
+    },
+    "store": {
+        "addStore": "/stores/addstore",
+        "getStore": "/stores/store/:id",
+        "getStores": "/stores"
+    },
+    "expense": {
+        "get": {
+            "getExpense": "/expenses/expense/:id",
+            "getExpenses": "/expenses"
+        },
+        "addExpense": "/addexpense",
+        "updateExpense": "/expenses/updateexpense"
     }
 }

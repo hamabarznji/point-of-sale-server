@@ -29,8 +29,7 @@ async function getEmployees(req, res, next) {
 
 async function getEmployee(req, res, next) {
     try {
-        console.log("here");
-        const employee = await Employee.getEmployee(1);
+        const employee = await Employee.getEmployee(req.params.id);
 
         res.status(200).send(employee);
     } catch (erorr) {

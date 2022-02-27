@@ -21,11 +21,11 @@ async function login(req, res) {
             token,
         });
     } catch (erorr) {
-        res.status(404).send(error, "The User name or password is incorrect!");
+        res.status(404).send(erorr, "The User name or password is incorrect!");
     }
 }
 
-async function getUsers(req, res, next) {
+/* async function getUsers(req, res, next) {
     try {
         let token = jwt.decode(req.token);
         if (token.role !== "owner")
@@ -34,7 +34,7 @@ async function getUsers(req, res, next) {
             });
         jwt.verify(req.token, process.env.SECRETKEY, async (err) => {
             if (err)
-                return res.status(403).send({ error: "Please authenticate." });
+                return res.status(403).send({ error: "Please authenticate." })
 
             const data = await User.getUsers();
             res.status(200).send({ data });
@@ -42,7 +42,15 @@ async function getUsers(req, res, next) {
     } catch (erorr) {
         res.status(erorr);
     }
+} */ async function getUsers(req, res, next) {
+    try {
+        const data = await User.getUsers();
+        res.status(200).send(data);
+    } catch (erorr) {
+        res.status(erorr);
+    }
 }
+
 async function getUser(req, res, next) {
     try {
         let token = jwt.decode(req.token);
@@ -73,9 +81,9 @@ async function getUser(req, res, next) {
 } */
 
 async function addUser(req, res, next) {
+    console.log(req.body);
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
-
     try {
         const user = await User.addUser({
             username: req.body.username,
@@ -97,5 +105,13 @@ async function deleteUser(req, res, next) {
         res.status(404).send(erorr);
     }
 }
+async function updateUser(req, res, next) {
+    try {
+        const data = await User.updateUser(user);
+        res.status(200).send(data);
+    } catch (erorr) {
+        res.status(404).send(erorr);
+    }
+}
 
-module.exports = { getUsers, getUser, addUser, deleteUser, login };
+module.exports = { getUsers, getUser, addUser, deleteUser, login, updateUser };
