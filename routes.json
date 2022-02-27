@@ -42,7 +42,6 @@
     },
     "store": {
         "addStore": "/stores/addstore",
-        "getStore": "/stores/store/:id",
         "getStores": "/stores"
     },
     "expense": {
@@ -50,7 +49,7 @@
             "getExpense": "/expenses/expense/:id",
             "getExpenses": "/expenses"
         },
-        "addExpense": "/addexpense",
-        "updateExpense": "/expenses/updateexpense"
+        "addExpense": "/expenses/addexpense",
+        "updateExpense": "/expenses/updateexpense/:id"
     }
 }

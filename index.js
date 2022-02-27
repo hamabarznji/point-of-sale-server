@@ -9,6 +9,7 @@ const Product = require("./src/controllers/Product");
 const Customer = require("./src/controllers/Customer");
 const Employee = require("./src/controllers/Employee");
 const Expense = require("./src/controllers/Expense");
+const Store = require("./src/controllers/Store");
 const verifyLoginToken = require("./middleware/verifyLoginToken");
 require("./tabels");
 app.use(express.json());
@@ -47,6 +48,10 @@ app.post(routes.expense.addExpense, Expense.addExpense);
 app.put(routes.expense.updateExpense, Expense.updateExpense);
 app.get(routes.expense.get.getExpenses, Expense.getExpenses);
 app.get(routes.expense.get.getExpense, Expense.getExpense);
+
+//Store
+app.get(routes.store.getStores, Store.getStores);
+app.post(routes.store.addStore, Store.addStore);
 
 app.listen(process.env.PORT || 3002, () =>
     console.log(`Listening on port ${process.env.PORT}`)
