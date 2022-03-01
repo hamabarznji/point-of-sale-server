@@ -2,19 +2,8 @@ const Product = require("../services/Product");
 
 async function addProduct(req, res, next) {
     try {
-        const product = await Product.addProduct({
-            id: req.body.id,
-            name: req.body.name,
-            supplier_id: req.body.supplier_id,
-            category_id: req.body.category_id,
-            price: req.body.price,
-            qty: req.body.qty,
-            size: req.body.size,
-            color: req.body.color,
-            weight: req.body.weight,
-            date: req.body.date,
-        });
-
+        const product = await Product.addProduct(req.body);
+        console.log(product);
         res.status(200).send(product);
     } catch (erorr) {
         res.status(404).send(erorr);
@@ -22,18 +11,7 @@ async function addProduct(req, res, next) {
 }
 async function updateProduct(req, res, next) {
     try {
-        const product = await Product.updateProduct({
-            id: req.body.id,
-            name: req.body.name,
-            supplier_id: req.body.supplier_id,
-            category_id: req.body.category_id,
-            price: req.body.price,
-            qty: req.body.qty,
-            size: req.body.size,
-            color: req.body.color,
-            weight: req.body.weight,
-            date: req.body.date,
-        });
+        const product = await Product.updateProduct(req.body);
 
         res.status(200).send(product);
     } catch (erorr) {

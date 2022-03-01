@@ -62,7 +62,7 @@ const Product = sequelize.define(
         timestamps: false,
     }
 );
-Product.sync()
+Product.sync({ forceUpdate: true })
     .then((data) => console.log(data, "Product table created"))
     .catch((err) => console.log(err));
 

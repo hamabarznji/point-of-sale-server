@@ -45,6 +45,7 @@ async function login(req, res) {
 } */ async function getUsers(req, res, next) {
     try {
         const data = await User.getUsers();
+
         res.status(200).send(data);
     } catch (erorr) {
         res.status(erorr);

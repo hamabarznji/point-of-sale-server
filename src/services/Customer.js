@@ -1,13 +1,9 @@
 const Customer = require("../models/Customer");
 
-async function addCustomer({ id, name, store_id, address } = {}) {
+async function addCustomer(customer) {
     try {
-        return await Customer.create({
-            id,
-            store_id,
-            name,
-            address,
-        });
+        console.log(customer);
+        return await Customer.create({ customer });
     } catch (err) {
         return err.message;
     }

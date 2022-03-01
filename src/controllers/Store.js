@@ -2,7 +2,7 @@ const Store = require("../services/Store");
 
 async function addStore(req, res, next) {
     try {
-        const store = await Store.addStore(req.body, req);
+        const store = await Store.addStore(req.body);
 
         res.status(200).send(store);
     } catch (erorr) {
