@@ -2,7 +2,6 @@ const Customer = require("../models/Customer");
 
 async function addCustomer(customer) {
     try {
-        console.log(customer);
         return await Customer.create({ customer });
     } catch (err) {
         return err.message;

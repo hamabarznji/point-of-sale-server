@@ -51,5 +51,21 @@
         },
         "addExpense": "/expenses/addexpense",
         "updateExpense": "/expenses/updateexpense/:id"
+    },
+    "category": {
+        "get": {
+            "getCategory": "/categories/category/:id",
+            "getCategories": "/categories"
+        },
+        "addCategory": "/categories/addcategory",
+        "updateCategory": "/categories/updatecategory/:id"
+    },
+    "supplier": {
+        "get": {
+            "getSupplier": "/suppliers/supplier/:id",
+            "getSuppliers": "/suppliers"
+        },
+        "addSupplier": "/suppliers/addsupplier",
+        "updateSupplier": "/suppliers/updatesupplier/:id"
     }
 }
