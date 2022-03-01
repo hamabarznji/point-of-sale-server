@@ -67,5 +67,21 @@
         },
         "addSupplier": "/suppliers/addsupplier",
         "updateSupplier": "/suppliers/updatesupplier/:id"
+    },
+    "order": {
+        "get": {
+            "getOrders": "/orders",
+            "getOrder": "/orders/order/:id"
+        },
+        "addOrder": "/orders/addorder",
+        "updateOrder": "/orders/updateorder/:id"
+    },
+    "orderedProduct": {
+        "get": {
+            "getOrderedProducts": "/orderedproducts",
+            "getOrderedProduct": "/orderedproducts/orderedproduct/:id"
+        },
+        "addOrderedProduct": "/orderedproducts/addorderedproduct",
+        "updateOrderedProduct": "/orderedproducts/updateorderedproduct/:id"
     }
 }

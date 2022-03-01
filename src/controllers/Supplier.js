@@ -1,7 +1,6 @@
 const Supplier = require("../services/Supplier");
 
 async function addSupplier(req, res, next) {
-    console.log(req.body);
     try {
         const supplier = await Supplier.addSupplier(req.body);
 

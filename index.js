@@ -12,6 +12,8 @@ const Expense = require("./src/controllers/Expense");
 const Store = require("./src/controllers/Store");
 const Category = require("./src/controllers/Category");
 const Supplier = require("./src/controllers/Supplier");
+const Order = require("./src/controllers/Order");
+const OrderedProduct = require("./src/controllers/OrderedProduct");
 const verifyAuth = require("./middleware/verifyAuth");
 require("./tabels");
 app.use(express.json());
@@ -59,6 +61,28 @@ app.get(routes.category.get.getCategories, verifyAuth, Category.getCategories);
 //Supplier
 app.get(routes.supplier.get.getSuppliers, verifyAuth, Supplier.getSuppliers);
 app.post(routes.supplier.addSupplier, verifyAuth, Supplier.addSupplier);
+
+//Order
+app.post(routes.order.addOrder, verifyAuth, Order.addOrder);
+app.get(routes.order.get.getOrders, verifyAuth, Order.getOrders);
+app.get(routes.order.get.getOrder, verifyAuth, Order.getOrder);
+
+//OrderedProduct
+app.post(
+    routes.orderedProduct.addOrderedProduct,
+    verifyAuth,
+    OrderedProduct.addOrderedProduct
+);
+app.get(
+    routes.orderedProduct.get.getOrderedProducts,
+    verifyAuth,
+    OrderedProduct.getOrderedProducts
+);
+app.get(
+    routes.orderedProduct.get.getOrderedProduct,
+    verifyAuth,
+    OrderedProduct.getOrderedProduct
+);
 
 app.listen(process.env.PORT || 3002, () =>
     console.log(`Listening on port ${process.env.PORT}`)
