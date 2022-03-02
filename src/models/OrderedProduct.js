@@ -28,10 +28,12 @@ const OrderedProduct = sequelize.define(
             },
         },
 
-        qty_or_weight: {
+        qty: {
             type: Sequelize.INTEGER(10),
         },
-
+        weight: {
+            type: Sequelize.INTEGER(10),
+        },
         price: {
             type: Sequelize.DOUBLE(),
             allowNull: false,
