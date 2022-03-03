@@ -22,5 +22,12 @@ async function getProducts() {
         return err.message;
     }
 }
+async function getProduct(id) {
+    try {
+        return await Product.findOne({ id: id });
+    } catch (err) {
+        return err.message;
+    }
+}
 
-module.exports = { addProduct, getProducts, updateProduct };
+module.exports = { addProduct, getProducts, updateProduct, getProduct };

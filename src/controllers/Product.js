@@ -28,5 +28,15 @@ async function getProducts(req, res, next) {
         res.status(404).send(erorr);
     }
 }
+async function getProduct(req, res, next) {
+    console.log(req.params.id, "gggggggggggggggggggggggggggggggg");
+    try {
+        const products = await Product.getProduct(req.params.id);
 
-module.exports = { addProduct, getProducts, updateProduct };
+        res.status(200).send(products);
+    } catch (erorr) {
+        res.status(404).send(erorr);
+    }
+}
+
+module.exports = { addProduct, getProducts, updateProduct, getProduct };

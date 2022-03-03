@@ -21,7 +21,6 @@ async function getExpenses(req, res, next) {
 async function getExpense(req, res, next) {
     try {
         const expense = await Expense.getExpense(req.params.id);
-
         res.status(200).send(expense);
     } catch (erorr) {
         res.status(404).send(erorr);
@@ -29,7 +28,6 @@ async function getExpense(req, res, next) {
 }
 
 async function updateExpense(req, res, next) {
-    console.log(req.body);
     try {
         const data = await Expense.updateExpense(req.body);
         console.log(data);

@@ -1,9 +1,7 @@
 {
     "user": {
-        "get": {
-            "getUser": "/users/:id",
-            "getUsers": "/users"
-        },
+        "getUser": "/users/:id",
+        "getUsers": "/users",
         "addUser": "/users",
         "updateUser": "/users/:id",
         "delete": {

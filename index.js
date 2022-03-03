@@ -1,21 +1,19 @@
 require("dotenv").config();
 const express = require("express");
-const swg = require("./swaggerDoc");
 var cors = require("cors");
-const SwaggerRouter = require("./swaggerDoc");
-const routes = require("./routes.json");
+const SwaggerRouter = require("./src/routers/swagger");
 const app = express();
 
 //routers
 const CategoryRouter = require("./src/routers/category");
-const CustomerRouter = require("./src/routers/category");
+const CustomerRouter = require("./src/routers/customer");
 const EmployeeRouter = require("./src/routers/employee");
 const ExpenseRouter = require("./src/routers/expense");
-const OrderRouter = require("./src/routers/user");
-const OrderedProductRouter = require("./src/routers/user");
-const ProductRouter = require("./src/routers/user");
-const StoreRouter = require("./src/routers/user");
-const SupplierRouter = require("./src/routers/user");
+const OrderRouter = require("./src/routers/order");
+const OrderedProductRouter = require("./src/routers/orderedProduct");
+const ProductRouter = require("./src/routers/product");
+const StoreRouter = require("./src/routers/store");
+const SupplierRouter = require("./src/routers/supplier");
 const UserRouter = require("./src/routers/user");
 
 require("./tabels");
@@ -34,16 +32,6 @@ app.use(SupplierRouter);
 app.use(UserRouter);
 
 app.use(SwaggerRouter);
-
-/**
- * @swagger
- * /customers:
- *  get:
- *    description: Use to request all customers
- *    responses:
- *      '200':
- *        description: A successful response
- */
 
 app.listen(process.env.PORT || 3002, () =>
     console.log(`Listening on port ${process.env.PORT}`)

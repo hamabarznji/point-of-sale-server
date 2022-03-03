@@ -11,25 +11,15 @@ const swaggerOptions = {
             contact: {
                 name: "Amazing Developer",
             },
-            servers: ["http://localhost:3002"],
+            servers: [{ url: "http://localhost:3002" }],
         },
     },
     // ['.routes/*.js']
-    apis: ["index.js"],
+    apis: ["apiDoc.js"],
 };
 
 const swaggerDocs = swaggerjsdoc(swaggerOptions);
 
-router.use("/api-docs", swaggerui.serve, swaggerui.setup(swaggerDocs));
-
-/**
- * @swagger
- * /customers:
- *  get:
- *    description: Use to request all customers
- *    responses:
- *      '200':
- *        description: A successful response
- */
+router.use("/apidocs", swaggerui.serve, swaggerui.setup(swaggerDocs));
 
 module.exports = router;

@@ -1,5 +1,4 @@
 const User = require("../models/User");
-const bcrypt = require("bcrypt");
 
 const getUsers = async () => {
     try {
@@ -9,6 +8,7 @@ const getUsers = async () => {
     }
 };
 const getUser = async (id) => {
+    console.log("user idddddddddddd", id);
     try {
         return await User.findOne({ where: { id: id } });
     } catch (err) {
@@ -25,7 +25,6 @@ const login = async (username) => {
 };
 
 const addUser = async (user) => {
-    console.log(user, "hereeeeeeeeeeeeeeeeeee");
     try {
         return await User.create(user);
     } catch (err) {
