@@ -1,87 +1,87 @@
 {
     "user": {
         "get": {
-            "getUser": "/users/user/:id",
+            "getUser": "/users/:id",
             "getUsers": "/users"
         },
-        "addUser": "/adduser",
-        "updateUser": "/users/updateuser/:id",
+        "addUser": "/users",
+        "updateUser": "/users/:id",
         "delete": {
-            "deleteUser": "/users/user/delete/:id"
+            "deleteUser": "/users/:id"
         },
         "update": {
-            "updateUser": "/users/updateuser/:id"
+            "updateUser": "/users/:id"
         },
         "login": {
-            "loginUser": "/user/login"
+            "loginUser": "/login"
         }
     },
     "product": {
         "get": {
             "getProducts": "/products",
-            "getProduct": "/products/product/:id"
+            "getProduct": "/products/:id"
         },
-        "addProduct": "/prodcuts/addproduct",
-        "updateProduct": "/products/updateproduct/:id"
+        "addProduct": "/prodcuts",
+        "updateProduct": "/products/:id"
     },
     "customer": {
         "get": {
             "getCustomers": "/customers",
-            "getCustomer": "/customers/customer/:id"
+            "getCustomer": "/customers/:id"
         },
-        "addCustomer": "/customers/addcustomer",
-        "updateCustomer": "/customers/updatecustomer/:id"
+        "addCustomer": "/customers/",
+        "updateCustomer": "/customers/:id"
     },
     "employee": {
         "get": {
             "getEmployees": "/employees",
-            "getEmployee": "/employees/employee/:id"
+            "getEmployee": "/employees/:id"
         },
-        "addEmployee": "/employees/addemployee",
-        "updateEmployee": "/employees/updateemployee/:id"
+        "addEmployee": "/employees",
+        "updateEmployee": "/employees/:id"
     },
     "store": {
-        "addStore": "/stores/addstore",
+        "addStore": "/stores",
         "getStores": "/stores"
     },
     "expense": {
         "get": {
-            "getExpense": "/expenses/expense/:id",
+            "getExpense": "/expenses/:id",
             "getExpenses": "/expenses"
         },
-        "addExpense": "/expenses/addexpense",
-        "updateExpense": "/expenses/updateexpense/:id"
+        "addExpense": "/expenses",
+        "updateExpense": "/expenses/:id"
     },
     "category": {
         "get": {
-            "getCategory": "/categories/category/:id",
+            "getCategory": "/categories/:id",
             "getCategories": "/categories"
         },
-        "addCategory": "/categories/addcategory",
-        "updateCategory": "/categories/updatecategory/:id"
+        "addCategory": "/categories",
+        "updateCategory": "/categories/:id"
     },
     "supplier": {
         "get": {
-            "getSupplier": "/suppliers/supplier/:id",
+            "getSupplier": "/suppliers/:id",
             "getSuppliers": "/suppliers"
         },
-        "addSupplier": "/suppliers/addsupplier",
-        "updateSupplier": "/suppliers/updatesupplier/:id"
+        "addSupplier": "/suppliers/",
+        "updateSupplier": "/suppliers/:id"
     },
     "order": {
         "get": {
             "getOrders": "/orders",
-            "getOrder": "/orders/order/:id"
+            "getOrder": "/orders/:id"
         },
-        "addOrder": "/orders/addorder",
-        "updateOrder": "/orders/updateorder/:id"
+        "addOrder": "/orders",
+        "updateOrder": "/orders/:id"
     },
     "orderedProduct": {
         "get": {
             "getOrderedProducts": "/orderedproducts",
-            "getOrderedProduct": "/orderedproducts/orderedproduct/:id"
+            "getOrderedProduct": "/orderedproducts/:id"
         },
-        "addOrderedProduct": "/orderedproducts/addorderedproduct",
-        "updateOrderedProduct": "/orderedproducts/updateorderedproduct/:id"
+        "addOrderedProduct": "/orderedproducts",
+        "updateOrderedProduct": "/orderedproducts/:id"
     }
 }

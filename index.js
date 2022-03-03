@@ -1,88 +1,49 @@
 require("dotenv").config();
 const express = require("express");
+const swg = require("./swaggerDoc");
 var cors = require("cors");
-
+const SwaggerRouter = require("./swaggerDoc");
 const routes = require("./routes.json");
 const app = express();
-const User = require("./src/controllers/User");
-const Product = require("./src/controllers/Product");
-const Customer = require("./src/controllers/Customer");
-const Employee = require("./src/controllers/Employee");
-const Expense = require("./src/controllers/Expense");
-const Store = require("./src/controllers/Store");
-const Category = require("./src/controllers/Category");
-const Supplier = require("./src/controllers/Supplier");
-const Order = require("./src/controllers/Order");
-const OrderedProduct = require("./src/controllers/OrderedProduct");
-const verifyAuth = require("./middleware/verifyAuth");
+
+//routers
+const CategoryRouter = require("./src/routers/category");
+const CustomerRouter = require("./src/routers/category");
+const EmployeeRouter = require("./src/routers/employee");
+const ExpenseRouter = require("./src/routers/expense");
+const OrderRouter = require("./src/routers/user");
+const OrderedProductRouter = require("./src/routers/user");
+const ProductRouter = require("./src/routers/user");
+const StoreRouter = require("./src/routers/user");
+const SupplierRouter = require("./src/routers/user");
+const UserRouter = require("./src/routers/user");
+
 require("./tabels");
 app.use(express.json());
 app.use(cors());
 
-//User
+app.use(CategoryRouter);
+app.use(CustomerRouter);
+app.use(EmployeeRouter);
+app.use(ExpenseRouter);
+app.use(OrderRouter);
+app.use(OrderedProductRouter);
+app.use(ProductRouter);
+app.use(StoreRouter);
+app.use(SupplierRouter);
+app.use(UserRouter);
 
-app.post(routes.user.login.loginUser, User.login);
-app.post(routes.user.addUser, verifyAuth, User.addUser);
-app.get(routes.user.get.getUsers, verifyAuth, User.getUsers);
-app.get(routes.user.get.getUser, verifyAuth, User.getUser);
-app.get(routes.user.delete.deleteUser, verifyAuth, User.deleteUser);
-app.put(routes.user.updateUser, verifyAuth, User.updateUser);
+app.use(SwaggerRouter);
 
-//Product
-app.post(routes.product.addProduct, Product.addProduct);
-app.get(routes.product.get.getProducts, verifyAuth, Product.getProducts);
-app.put(routes.product.updateProduct, Product.updateProduct);
-
-//Customer
-app.get(routes.customer.get.getCustomers, verifyAuth, Customer.getCustomers);
-app.get(routes.customer.get.getCustomer, verifyAuth, Customer.getCustomer);
-app.post(routes.customer.addCustomer, verifyAuth, Customer.addCustomer);
-app.put(routes.customer.updateCustomer, verifyAuth, Customer.updateCustomer);
-
-//Employee
-app.get(routes.employee.get.getEmployees, verifyAuth, Employee.getEmployees);
-app.get(routes.employee.get.getEmployee, verifyAuth, Employee.getEmployee);
-app.post(routes.employee.addEmployee, verifyAuth, Employee.addEmployee);
-app.put(routes.employee.updateEmployee, verifyAuth, Employee.updateEmployee);
-
-//Expense
-app.post(routes.expense.addExpense, verifyAuth, Expense.addExpense);
-app.put(routes.expense.updateExpense, verifyAuth, Expense.updateExpense);
-app.get(routes.expense.get.getExpenses, verifyAuth, Expense.getExpenses);
-app.get(routes.expense.get.getExpense, verifyAuth, Expense.getExpense);
-
-//Store
-app.get(routes.store.getStores, verifyAuth, Store.getStores);
-app.post(routes.store.addStore, verifyAuth, Store.addStore);
-
-//Category
-app.get(routes.category.get.getCategories, verifyAuth, Category.getCategories);
-
-//Supplier
-app.get(routes.supplier.get.getSuppliers, verifyAuth, Supplier.getSuppliers);
-app.post(routes.supplier.addSupplier, verifyAuth, Supplier.addSupplier);
-
-//Order
-app.post(routes.order.addOrder, verifyAuth, Order.addOrder);
-app.get(routes.order.get.getOrders, verifyAuth, Order.getOrders);
-app.get(routes.order.get.getOrder, verifyAuth, Order.getOrder);
-
-//OrderedProduct
-app.post(
-    routes.orderedProduct.addOrderedProduct,
-    verifyAuth,
-    OrderedProduct.addOrderedProduct
-);
-app.get(
-    routes.orderedProduct.get.getOrderedProducts,
-    verifyAuth,
-    OrderedProduct.getOrderedProducts
-);
-app.get(
-    routes.orderedProduct.get.getOrderedProduct,
-    verifyAuth,
-    OrderedProduct.getOrderedProduct
-);
+/**
+ * @swagger
+ * /customers:
+ *  get:
+ *    description: Use to request all customers
+ *    responses:
+ *      '200':
+ *        description: A successful response
+ */
 
 app.listen(process.env.PORT || 3002, () =>
     console.log(`Listening on port ${process.env.PORT}`)
