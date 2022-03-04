@@ -40,7 +40,8 @@
     },
     "store": {
         "addStore": "/stores",
-        "getStores": "/stores"
+        "getStores": "/stores",
+        "updateStore": "/stores/:id"
     },
     "expense": {
         "get": {
@@ -81,5 +82,11 @@
         },
         "addOrderedProduct": "/orderedproducts",
         "updateOrderedProduct": "/orderedproducts/:id"
+    },
+    "transaction": {
+        "getTransactions": "/transactions",
+        "getTransaction": "/transactions/:id",
+        "addTransaction": "/transactions",
+        "updateTransaction": "/transactions/:id"
     }
 }

@@ -29,7 +29,6 @@ async function getProducts(req, res, next) {
     }
 }
 async function getProduct(req, res, next) {
-    console.log(req.params.id, "gggggggggggggggggggggggggggggggg");
     try {
         const products = await Product.getProduct(req.params.id);
 

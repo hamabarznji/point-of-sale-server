@@ -19,8 +19,18 @@ async function getStores(req, res, next) {
         res.status(404).send(erorr);
     }
 }
+async function updateStore(req, res, next) {
+    try {
+        const store = await Store.updateStore(req.body);
+
+        res.status(200).send(store);
+    } catch (erorr) {
+        res.status(404).send(erorr);
+    }
+}
 
 module.exports = {
     addStore,
     getStores,
+    updateStore,
 };

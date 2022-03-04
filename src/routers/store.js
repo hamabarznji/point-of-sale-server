@@ -6,5 +6,6 @@ const Store = require("../controllers/Store");
 
 router.get(routes.store.getStores, verifyAuth, Store.getStores);
 router.post(routes.store.addStore, verifyAuth, Store.addStore);
+router.put(routes.store.updateStore, verifyAuth, Store.updateStore);
 
 module.exports = router;

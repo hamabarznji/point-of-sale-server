@@ -3,12 +3,12 @@ const Sequelize = require("sequelize");
 const Product = require("./Product");
 const Store = require("./Store");
 
-const TransferredProduct = sequelize.define(
-    "transferred_product",
+const Transaction = sequelize.define(
+    "transaction",
     {
         id: {
             type: Sequelize.INTEGER(13),
-            autoIncrement: false,
+            autoIncrement: true,
             allowNull: false,
             primaryKey: true,
         },
@@ -29,7 +29,10 @@ const TransferredProduct = sequelize.define(
             },
         },
 
-        qty_or_weight: {
+        weight: {
+            type: Sequelize.INTEGER(10),
+        },
+        qty: {
             type: Sequelize.INTEGER(10),
         },
 
@@ -44,8 +47,8 @@ const TransferredProduct = sequelize.define(
         timestamps: false,
     }
 );
-TransferredProduct.sync({ altered: true })
-    .then((data) => console.log(data, "Transferred Product table created"))
+Transaction.sync({ alter: true })
+    .then((data) => console.log(data, "Transaction table created"))
     .catch((err) => console.log(err));
 
-module.exports = TransferredProduct;
+module.exports = Transaction;

@@ -15,6 +15,7 @@ const ProductRouter = require("./src/routers/product");
 const StoreRouter = require("./src/routers/store");
 const SupplierRouter = require("./src/routers/supplier");
 const UserRouter = require("./src/routers/user");
+const Transaction = require("./src/routers/transaction");
 
 require("./tabels");
 app.use(express.json());
@@ -30,6 +31,7 @@ app.use(ProductRouter);
 app.use(StoreRouter);
 app.use(SupplierRouter);
 app.use(UserRouter);
+app.use(Transaction);
 
 app.use(SwaggerRouter);
 

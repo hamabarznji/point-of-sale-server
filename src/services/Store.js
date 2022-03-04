@@ -16,7 +16,18 @@ async function addStore(store) {
     }
 }
 
+async function updateStore(store) {
+    console.log(store);
+
+    try {
+        return await Store.update(store, { where: { id: store.id } });
+    } catch (err) {
+        return err.message;
+    }
+}
+
 module.exports = {
     addStore,
     getStores,
+    updateStore,
 };

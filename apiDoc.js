@@ -3,19 +3,27 @@
     /**
      * @swagger
      * tags:
-     *  name: Auth
-     *
-     * /login:
+     *  name: Login/Authentication
+     *  description: When you login you get a token.
+     * /api/login:
      *  post:
-     *      tags: [Auth]
-     *parameters:
-     *   username
-     *
-     *
-     *
-     *
-     *
-     *
+     *      tags: [Login/Authentication]
+     *      requestBody:
+     *          required: true
+     *          content:
+     *              application/json:
+     *                  schema:
+     *                      type: object
+     *                      properties:
+     *                          email:
+     *                              type: string
+     *                              default: coder
+     *                          password:
+     *                              type: string
+     *                              default: coder123
+     *      responses:
+     *          default:
+     *              description: This is the default response for it
      */
 }
 
@@ -58,6 +66,16 @@
      *
      * /users/{id}:
      *  put:
+     *      tags: [User]
+     *
+     */
+    /**
+     * @swagger
+     * tags:
+     *  name: User
+     *
+     * /users/{id}:
+     *  delete:
      *      tags: [User]
      *
      */
@@ -431,7 +449,7 @@
      *
      * /suppliers/{id}:
      *  get:
-     *      tags: [Suppliers]
+     *      tags: [Supplier]
      *
      */
     /**

@@ -1,7 +1,7 @@
 const sequelize = require("../../db");
 const Sequelize = require("sequelize");
 const Order = require("./Order");
-const TransfereedProduct = require("./TransferredProduct");
+const Transaction = require("./Transaction");
 const OrderedProduct = sequelize.define(
     "ordereded_product",
     {
@@ -19,11 +19,11 @@ const OrderedProduct = sequelize.define(
                 field: "id",
             },
         },
-        transfereed_product_id: {
+        transaction_id: {
             type: Sequelize.INTEGER(13),
             allowNull: false,
             references: {
-                model: TransfereedProduct,
+                model: Transaction,
                 field: "id",
             },
         },
