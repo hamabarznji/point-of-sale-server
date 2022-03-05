@@ -1,6 +1,7 @@
 const sequelize = require("../../db");
 const Sequelize = require("sequelize");
 const Store = require("./Store");
+const Order = require("./Order");
 const User = sequelize.define(
     "user",
     {
@@ -43,6 +44,9 @@ const User = sequelize.define(
         timestamps: false,
     }
 );
+Store.hasMany(User, { foreignKey: "store_id", sourceKey: "id" });
+User.belongsTo(Store, { foreignKey: "store_id", targetKey: "id" });
+
 User.sync({ alter: true })
     .then((data) => console.log(data, "User table created"))
     .catch((err) => console.log(err));

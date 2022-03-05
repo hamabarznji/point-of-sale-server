@@ -38,10 +38,32 @@ async function getTransaction(req, res, next) {
         res.status(404).send(erorr);
     }
 }
+async function getAllTransactionsWithAssociatedTables(req, res, next) {
+    try {
+        const transactions =
+            await Transaction.getAllTransactionsWithAssociatedTables();
+        const allTransactions = transactions.map((transaction) => {
+            return {
+                id: transaction.id,
+                store_id: transaction.store_id,
+                product_id: transaction.product_id,
+                qty: transaction.qty,
+                weight: transaction.weight,
+                date: transaction.date,
+                storeName: transaction.store.name,
+                productName: transaction.product.name,
+            };
+        });
+        res.status(200).send(allTransactions);
+    } catch (erorr) {
+        res.status(404).send(erorr);
+    }
+}
 
 module.exports = {
     addTransaction,
     updateTransaction,
     getTransactions,
     getTransaction,
+    getAllTransactionsWithAssociatedTables,
 };

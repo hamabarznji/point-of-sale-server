@@ -47,6 +47,12 @@ const Transaction = sequelize.define(
         timestamps: false,
     }
 );
+Store.hasMany(Transaction, { foreignKey: "store_id", sourceKey: "id" });
+Transaction.belongsTo(Store, { foreignKey: "store_id", targetKey: "id" });
+
+Product.hasMany(Transaction, { foreignKey: "product_id", sourceKey: "id" });
+Transaction.belongsTo(Product, { foreignKey: "product_id", targetKey: "id" });
+
 Transaction.sync({ alter: true })
     .then((data) => console.log(data, "Transaction table created"))
     .catch((err) => console.log(err));

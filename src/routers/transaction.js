@@ -7,7 +7,7 @@ const Transaction = require("../controllers/Transaction");
 router.get(
     routes.transaction.getTransactions,
     verifyAuth,
-    Transaction.getTransactions
+    Transaction.getAllTransactionsWithAssociatedTables
 );
 router.get(
     routes.transaction.getTransaction,
@@ -19,6 +19,7 @@ router.post(
     verifyAuth,
     Transaction.addTransaction
 );
+
 router.put(
     routes.transaction.updateTransaction,
     verifyAuth,

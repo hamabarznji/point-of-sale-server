@@ -2,13 +2,12 @@ const User = require("../models/User");
 
 const getUsers = async () => {
     try {
-        return await User.findAll();
+        return await User.findAll({ include: { all: true } });
     } catch (err) {
         return err.message;
     }
 };
 const getUser = async (id) => {
-    console.log("user idddddddddddd", id);
     try {
         return await User.findOne({ where: { id: id } });
     } catch (err) {

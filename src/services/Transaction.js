@@ -1,5 +1,6 @@
 const Transaction = require("../models/Transaction");
-
+const Store = require("../models/Store");
+const Product = require("../models/Product");
 async function addTransaction(transaction) {
     try {
         return await Transaction.create(transaction);
@@ -41,10 +42,20 @@ async function getTransaction(id) {
     }
 }
 
+async function getAllTransactionsWithAssociatedTables() {
+    try {
+        //get the store name from Store and Product name from Prodcut
+        return await Transaction.findAll({ include: { all: true } });
+    } catch (err) {
+        return err.message;
+    }
+}
+
 module.exports = {
     addTransaction,
     updateTransaction,
     deleteTransaction,
     getTransactions,
     getTransaction,
+    getAllTransactionsWithAssociatedTables,
 };

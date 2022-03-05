@@ -21,8 +21,20 @@ async function getOrder(req, res, next) {
 }
 async function getOrders(req, res, next) {
     try {
-        const orders = await Order.getOrders();
-
+        const data = await Order.getOrders();
+        const orders = data.map((order) => {
+            return {
+                id: order.id,
+                storeName: order.store.name,
+                userName: order.user.name,
+                customerName: order.customer.name,
+                store_id: order.store_id,
+                user_id: order.user_id,
+                customer_phone: order.customer_phone,
+                description: order.description,
+                date: order.date,
+            };
+        });
         res.status(200).send(orders);
     } catch (erorr) {
         res.status(404).send(erorr);

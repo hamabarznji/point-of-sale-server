@@ -45,15 +45,22 @@ async function login(req, res) {
 } */ async function getUsers(req, res, next) {
     try {
         const data = await User.getUsers();
-
-        res.status(200).send(data);
+        const users = data.map((user) => {
+            return {
+                id: user.id,
+                username: user.username,
+                role: user.role,
+                storeName: user.store.name,
+                store_id: user.store_id,
+            };
+        });
+        res.status(200).send(users);
     } catch (erorr) {
         res.status(erorr);
     }
 }
 
 async function getUser(req, res, next) {
-    console.log(req.params.id);
     try {
         const data = await User.getUser(req.params.id);
         res.status(200).send(data);

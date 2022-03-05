@@ -48,6 +48,8 @@ const Expense = sequelize.define(
         timestamps: false,
     }
 );
+Store.hasMany(Expense, { foreignKey: "store_id", sourceKey: "id" });
+Expense.belongsTo(Store, { foreignKey: "store_id", targetKey: "id" });
 Expense.sync()
     .then((data) => console.log(data, "Expense table created"))
     .catch((err) => console.log(err));

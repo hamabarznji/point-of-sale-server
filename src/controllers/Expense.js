@@ -12,7 +12,17 @@ async function addExpense(req, res, next) {
 async function getExpenses(req, res, next) {
     try {
         const data = await Expense.getExpenses();
-        res.status(200).send(data);
+        const expenses = data.map((expense) => {
+            return {
+                id: expense.id,
+                store_id: expense.store_id,
+                storeName: expense.store.name,
+                description: expense.description,
+                amount: expense.amount,
+                date: expense.date,
+            };
+        });
+        res.status(200).send(expenses);
     } catch (erorr) {
         res.status(erorr);
     }
