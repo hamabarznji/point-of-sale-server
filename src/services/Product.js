@@ -17,7 +17,7 @@ async function updateProduct(product) {
 
 async function getProducts() {
     try {
-        return await Product.findAll();
+        return await Product.findAll({ include: { all: true } });
     } catch (err) {
         return err.message;
     }

@@ -19,8 +19,18 @@ async function addEmployee(req, res, next) {
 
 async function getEmployees(req, res, next) {
     try {
-        const employees = await Employee.getEmployees();
-
+        const data = await Employee.getEmployees();
+        const employees = data.map((employee) => {
+            return {
+                id: employee.id,
+                name: employee.name,
+                storeName: employee.store.name,
+                store_id: employee.store_id,
+                phone: employee.phone,
+                salary: employee.salary,
+                address: employee.address,
+            };
+        });
         res.status(200).send(employees);
     } catch (erorr) {
         res.status(404).send(erorr);
