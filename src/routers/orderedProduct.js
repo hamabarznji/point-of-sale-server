@@ -10,12 +10,12 @@ router.post(
     OrderedProduct.addOrderedProduct
 );
 router.get(
-    routes.orderedProduct.get.getOrderedProducts,
+    routes.orderedProduct.getOrderedProducts,
     verifyAuth,
-    OrderedProduct.getOrderedProducts
+    OrderedProduct.getAll
 );
 router.get(
-    routes.orderedProduct.get.getOrderedProduct,
+    routes.orderedProduct.getOrderedProduct,
     verifyAuth,
     OrderedProduct.getOrderedProduct
 );

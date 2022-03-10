@@ -76,17 +76,15 @@
         "updateOrder": "/orders/:id"
     },
     "orderedProduct": {
-        "get": {
-            "getOrderedProducts": "/orderedproducts",
-            "getOrderedProduct": "/orderedproducts/:id"
-        },
+        "getOrderedProducts": "/orderedproducts",
+        "getOrderedProduct": "/orderedproducts/:id",
         "addOrderedProduct": "/orderedproducts",
         "updateOrderedProduct": "/orderedproducts/:id"
     },
-    "transaction": {
-        "getTransactions": "/transactions",
-        "getTransaction": "/transactions/:id",
-        "addTransaction": "/transactions",
-        "updateTransaction": "/transactions/:id"
+    "TransfareedProduct": {
+        "getTransfareedProducts": "/transfareedproducts",
+        "getTransfareedProduct": "/transfareedproducts/:id",
+        "addTransfareedproduct": "/transfareedproducts",
+        "updateTransfareedProduct": "/transfareedproducts/:id"
     }
 }

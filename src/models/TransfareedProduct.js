@@ -3,8 +3,8 @@ const Sequelize = require("sequelize");
 const Product = require("./Product");
 const Store = require("./Store");
 
-const Transaction = sequelize.define(
-    "transaction",
+const TransfareedProduct = sequelize.define(
+    "Transfareed_Product",
     {
         id: {
             type: Sequelize.INTEGER(13),
@@ -47,14 +47,22 @@ const Transaction = sequelize.define(
         timestamps: false,
     }
 );
-Store.hasMany(Transaction, { foreignKey: "store_id", sourceKey: "id" });
-Transaction.belongsTo(Store, { foreignKey: "store_id", targetKey: "id" });
+Store.hasMany(TransfareedProduct, { foreignKey: "store_id", sourceKey: "id" });
+TransfareedProduct.belongsTo(Store, {
+    foreignKey: "store_id",
+    targetKey: "id",
+});
 
-Product.hasMany(Transaction, { foreignKey: "product_id", sourceKey: "id" });
-Transaction.belongsTo(Product, { foreignKey: "product_id", targetKey: "id" });
-
-Transaction.sync({ alter: true })
-    .then((data) => console.log(data, "Transaction table created"))
+Product.hasMany(TransfareedProduct, {
+    foreignKey: "product_id",
+    sourceKey: "id",
+});
+TransfareedProduct.belongsTo(Product, {
+    foreignKey: "product_id",
+    targetKey: "id",
+});
+TransfareedProduct.sync({ alter: true })
+    .then((data) => console.log(data, "Transfareed Product table created"))
     .catch((err) => console.log(err));
 
-module.exports = Transaction;
+module.exports = TransfareedProduct;

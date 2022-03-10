@@ -1,7 +1,8 @@
 const sequelize = require("../../db");
 const Sequelize = require("sequelize");
 const Order = require("./Order");
-const Transaction = require("./Transaction");
+const TransfareedProduct = require("./TransfareedProduct");
+const Product = require("./Product");
 const OrderedProduct = sequelize.define(
     "ordereded_product",
     {
@@ -19,11 +20,11 @@ const OrderedProduct = sequelize.define(
                 field: "id",
             },
         },
-        transaction_id: {
+        TransfareedProduct_id: {
             type: Sequelize.INTEGER(13),
             allowNull: false,
             references: {
-                model: Transaction,
+                model: TransfareedProduct,
                 field: "id",
             },
         },
@@ -45,6 +46,22 @@ const OrderedProduct = sequelize.define(
         timestamps: false,
     }
 );
+
+//association
+OrderedProduct.belongsTo(Order, { foreignKey: "order_id", targetKey: "id" });
+OrderedProduct.belongsTo(TransfareedProduct, {
+    foreignKey: "transfareedProduct_id",
+    targetKey: "id",
+});
+TransfareedProduct.hasMany(OrderedProduct, {
+    foreignKey: "transfareedProduct_id",
+    sourceKey: "id",
+});
+Order.hasMany(OrderedProduct, {
+    foreignKey: "order_id",
+    sourceKey: "id",
+});
+
 OrderedProduct.sync({ alter: true })
     .then((data) =>
         console.log(data, "Ordereded Product Product table created")
