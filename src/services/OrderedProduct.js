@@ -8,6 +8,15 @@ async function getOrderedProducts() {
     }
 }
 
+//getAll
+async function getAll() {
+    try {
+        return await OrderedProduct.findAll({ include: { all: true } });
+    } catch (err) {
+        return err.message;
+    }
+}
+
 async function getOrderedProduct(id) {
     try {
         return await OrderedProduct.findOne({ where: { id: id } });
@@ -39,4 +48,5 @@ module.exports = {
     getOrderedProduct,
     addOrderedProduct,
     updateOrderedProduct,
+    getAll,
 };

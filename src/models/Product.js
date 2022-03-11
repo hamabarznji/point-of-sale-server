@@ -42,9 +42,7 @@ const Product = sequelize.define(
         qty: {
             type: Sequelize.INTEGER(10),
         },
-        size: {
-            type: Sequelize.STRING(25),
-        },
+
         color: {
             type: Sequelize.STRING(10),
         },
@@ -62,6 +60,11 @@ const Product = sequelize.define(
         timestamps: false,
     }
 );
+Product.belongsTo(Supplier, { foreignKey: "supplier_id", targetKey: "id" });
+Product.belongsTo(Category, { foreignKey: "category_id", targetKey: "id" });
+
+Category.hasMany(Product, { foreignKey: "category_id", targetKey: "id" });
+Supplier.hasMany(Product, { foreignKey: "supplier_id", targetKey: "id" });
 Product.sync({ forceUpdate: true })
     .then((data) => console.log(data, "Product table created"))
     .catch((err) => console.log(err));

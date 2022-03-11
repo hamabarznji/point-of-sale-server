@@ -9,7 +9,7 @@ async function addOrder(order) {
 }
 async function getOrders() {
     try {
-        return await Ordere.findAll();
+        return await Ordere.findAll({ include: { all: true } });
     } catch (err) {
         return err.message;
     }

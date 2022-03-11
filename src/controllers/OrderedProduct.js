@@ -8,6 +8,17 @@ async function getOrderedProduct(id) {
     }
 }
 
+//getAll
+async function getAll(req, res, next) {
+    try {
+        const orderedProducts = await OrderedProduct.getAll();
+
+        res.status(200).json(orderedProducts);
+    } catch (err) {
+        next(err);
+    }
+}
+
 async function getOrderedProducts(req, res, next) {
     try {
         return await OrderedProduct.getOrderedProducts();
@@ -24,4 +35,9 @@ async function addOrderedProduct(req, res, next) {
     }
 }
 
-module.exports = { getOrderedProduct, getOrderedProducts, addOrderedProduct };
+module.exports = {
+    getOrderedProduct,
+    getOrderedProducts,
+    addOrderedProduct,
+    getAll,
+};

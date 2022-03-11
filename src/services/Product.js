@@ -17,10 +17,21 @@ async function updateProduct(product) {
 
 async function getProducts() {
     try {
-        return await Product.findAll();
+        return await Product.findAll({ include: { all: true } });
+    } catch (err) {
+        return err.message;
+    }
+}
+async function getProduct(id) {
+    console.log(id);
+    try {
+        return await Product.findOne({
+            include: { all: true },
+            where: { id: id },
+        });
     } catch (err) {
         return err.message;
     }
 }
 
-module.exports = { addProduct, getProducts, updateProduct };
+module.exports = { addProduct, getProducts, updateProduct, getProduct };

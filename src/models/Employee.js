@@ -53,6 +53,9 @@ const Employee = sequelize.define(
         timestamps: false,
     }
 );
+Employee.belongsTo(Store, { foreignKey: "store_id", targetKey: "id" });
+Store.hasMany(Employee, { foreignKey: "store_id", targetKey: "id" });
+
 Employee.sync()
     .then((data) => console.log(data, "Employee table created"))
     .catch((err) => console.log(err));

@@ -2,7 +2,7 @@ const Employee = require("../models/Employee");
 
 async function getEmployees() {
     try {
-        return await Employee.findAll();
+        return await Employee.findAll({ include: { all: true } });
     } catch (err) {
         return err.message;
     }

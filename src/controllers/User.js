@@ -45,8 +45,16 @@ async function login(req, res) {
 } */ async function getUsers(req, res, next) {
     try {
         const data = await User.getUsers();
-
-        res.status(200).send(data);
+        const users = data.map((user) => {
+            return {
+                id: user.id,
+                username: user.username,
+                role: user.role,
+                storeName: user.store.name,
+                store_id: user.store_id,
+            };
+        });
+        res.status(200).send(users);
     } catch (erorr) {
         res.status(erorr);
     }
@@ -54,20 +62,10 @@ async function login(req, res) {
 
 async function getUser(req, res, next) {
     try {
-        let token = jwt.decode(req.token);
-        if (token.role !== "owner")
-            return res.status(403).send({
-                error: "You are not authorized to access this resource",
-            });
-        jwt.verify(req.token, process.env.SECRETKEY, async (err) => {
-            if (err)
-                return res.status(403).send({ error: "Please authenticate." });
-
-            const data = await User.getUser(req.params.id);
-            res.status(200).send(data);
-        });
+        const data = await User.getUser(req.params.id);
+        res.status(200).send(data);
     } catch (erorr) {
-        res.status(erorr);
+        res.status(404).send(erorr);
     }
 }
 

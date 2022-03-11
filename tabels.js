@@ -9,7 +9,7 @@ const Payment = require("./src/models/Payment");
 const Product = require("./src/models/Product");
 const Supplier = require("./src/models/Supplier");
 const Category = require("./src/models/Category");
-const TransferredProduct = require("./src/models/TransferredProduct");
+const TransfareedProduct = require("./src/models/TransfareedProduct");
 
 module.exports = {
     User,
@@ -23,5 +23,5 @@ module.exports = {
     Product,
     Supplier,
     Store,
-    TransferredProduct,
+    TransfareedProduct,
 };
