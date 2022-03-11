@@ -23,8 +23,12 @@ async function getProducts() {
     }
 }
 async function getProduct(id) {
+    console.log(id);
     try {
-        return await Product.findOne({ id: id });
+        return await Product.findOne({
+            include: { all: true },
+            where: { id: id },
+        });
     } catch (err) {
         return err.message;
     }

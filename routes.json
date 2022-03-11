@@ -25,7 +25,8 @@
     "customer": {
         "get": {
             "getCustomers": "/customers",
-            "getCustomer": "/customers/:id"
+            "getCustomer": "/customers/:id",
+            "getCustomersForSpecificStore": "/customers/store/:storeid"
         },
         "addCustomer": "/customers/",
         "updateCustomer": "/customers/:id"
@@ -41,6 +42,7 @@
     "store": {
         "addStore": "/stores",
         "getStores": "/stores",
+        "getStore": "/stores/:id",
         "updateStore": "/stores/:id"
     },
     "expense": {

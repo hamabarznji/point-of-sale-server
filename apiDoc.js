@@ -5,7 +5,7 @@
      * tags:
      *  name: Login/Authentication
      *  description: When you login you get a token.
-     * /api/login:
+     * /:
      *  post:
      *      tags: [Login/Authentication]
      *      requestBody:
@@ -32,51 +32,51 @@
     /**
      * @swagger
      * tags:
-     *  name: User
+     *  name: Users
      *
      * /users:
      *  get:
-     *      tags: [User]
+     *      tags: [Users]
      *
      */
     /**
      * @swagger
      * tags:
-     *  name: User
+     *  name: Users
      *
      * /users/{id}:
      *  get:
-     *      tags: [User]
+     *      tags: [Users]
      *
      */
     /**
      * @swagger
      * tags:
-     *  name: User
+     *  name: Users
      *
      * /users:
      *  post:
-     *      tags: [User]
+     *      tags: [Users]
      *
      */
     /**
      * @swagger
      * tags:
-     *  name: User
+     *  name: Users
      *
      * /users/{id}:
      *  put:
-     *      tags: [User]
+     *      tags: [Users]
      *
      */
     /**
      * @swagger
      * tags:
-     *  name: User
+     *  name: Users
      *
      * /users/{id}:
      *  delete:
-     *      tags: [User]
+     *      tags: [Users]
      *
      */
 }
@@ -449,7 +449,7 @@
      *
      * /suppliers/{id}:
      *  get:
-     *      tags: [Supplier]
+     *      tags: [Suppliers]
      *
      */
     /**
@@ -470,6 +470,19 @@
      * /suppliers/{id}:
      *  put:
      *      tags: [Suppliers]
+     *
+     */
+}
+//Reports
+{
+    /**
+     * @swagger
+     * tags:
+     *  name: Reports
+     *
+     * /reports/{reportType}:
+     *  post:
+     *      tags: [Reports]
      *
      */
 }

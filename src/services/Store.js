@@ -8,6 +8,14 @@ async function getStores() {
     }
 }
 
+async function getStore(id) {
+    try {
+        return await Store.findOne({ where: { id: id } });
+    } catch (err) {
+        return err.message;
+    }
+}
+
 async function addStore(store) {
     try {
         return await Store.create(store);
@@ -29,5 +37,6 @@ async function updateStore(store) {
 module.exports = {
     addStore,
     getStores,
+    getStore,
     updateStore,
 };

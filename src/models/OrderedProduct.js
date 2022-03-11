@@ -20,7 +20,7 @@ const OrderedProduct = sequelize.define(
                 field: "id",
             },
         },
-        TransfareedProduct_id: {
+        transfareedProduct_id: {
             type: Sequelize.INTEGER(13),
             allowNull: false,
             references: {

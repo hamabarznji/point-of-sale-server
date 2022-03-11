@@ -19,6 +19,15 @@ async function getStores(req, res, next) {
         res.status(404).send(erorr);
     }
 }
+async function getStore(req, res, next) {
+    try {
+        const store = await Store.getStore(req.params.id);
+
+        res.status(200).send(store);
+    } catch (erorr) {
+        res.status(404).send(erorr);
+    }
+}
 async function updateStore(req, res, next) {
     try {
         const store = await Store.updateStore(req.body);
@@ -32,5 +41,6 @@ async function updateStore(req, res, next) {
 module.exports = {
     addStore,
     getStores,
+    getStore,
     updateStore,
 };
