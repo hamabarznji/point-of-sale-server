@@ -34,4 +34,9 @@ async function getProduct(id) {
     }
 }
 
-module.exports = { addProduct, getProducts, updateProduct, getProduct };
+module.exports = {
+    addProduct,
+    getProducts,
+    updateProduct,
+    getProduct,
+};

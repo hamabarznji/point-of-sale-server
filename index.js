@@ -15,7 +15,6 @@ const ProductRouter = require("./src/routers/product");
 const StoreRouter = require("./src/routers/store");
 const SupplierRouter = require("./src/routers/supplier");
 const UserRouter = require("./src/routers/user");
-
 const TransfareedProductRouter = require("./src/routers/TransfareedProduct");
 
 app.use(express.json());

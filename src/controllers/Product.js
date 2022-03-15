@@ -9,13 +9,58 @@ async function addProduct(req, res, next) {
         res.status(404).send(erorr);
     }
 }
+
 async function updateProduct(req, res, next) {
     try {
-        const product = await Product.updateProduct(req.body);
+        if (req.body.weight && req.body.qty > 0) {
+            return res
+                .status(422)
+                .send("A product cannot have both weight and quantity!");
+        }
+        const foundedProduct = await Product.getProduct(req.body.id);
+        const { price, weight, qty, id } = foundedProduct;
+        if (!req.body.isNew) {
+            const updatedProduct = await Product.updateProduct(req.body);
+            return res.status(200).send(updatedProduct);
+        }
 
-        res.status(200).send(product);
+        if (weight <= 0 && qty > 0) {
+            const averagePrice =
+                (price * qty + req.body.price * req.body.qty) /
+                (qty + req.body.qty);
+            const newQty = qty + req.body.qty;
+            const updatedProduct = await Product.updateProduct({
+                id,
+                name: req.body.name,
+                supplier_id: req.body.supplier_id,
+                category_id: req.body.category_id,
+                price: averagePrice.toFixed(2),
+                qty: newQty,
+                color: req.body.color,
+                weight: req.body.weight,
+                date: req.body.date,
+            });
+            return res.status(200).send(updatedProduct);
+        } else {
+            const averagePrice =
+                (price * weight + req.body.price * req.body.weight) /
+                (weight + req.body.weight);
+            const newWeight = weight + req.body.weight;
+            const updatedProduct = await Product.updateProduct({
+                id,
+                name: req.body.name,
+                supplier_id: req.body.supplier_id,
+                category_id: req.body.category_id,
+                price: averagePrice.toFixed(2),
+                qty: req.body.qty,
+                color: req.body.color,
+                weight: newWeight,
+                date: req.body.date,
+            });
+            return res.status(200).send(updatedProduct);
+        }
     } catch (erorr) {
-        res.status(404).send(erorr);
+        return res.status(404).send(erorr);
     }
 }
 
@@ -45,12 +90,17 @@ async function getProducts(req, res, next) {
 }
 async function getProduct(req, res, next) {
     try {
-        const products = await Product.getProduct(req.params.id);
+        const product = await Product.getProduct(req.params.id);
 
-        res.status(200).send(products);
+        res.status(200).send(product);
     } catch (erorr) {
         res.status(404).send(erorr);
     }
 }
 
-module.exports = { addProduct, getProducts, updateProduct, getProduct };
+module.exports = {
+    addProduct,
+    getProducts,
+    updateProduct,
+    getProduct,
+};
