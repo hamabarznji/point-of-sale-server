@@ -19,5 +19,10 @@ router.get(
     verifyAuth,
     OrderedProduct.getOrderedProduct
 );
+router.put(
+    routes.orderedProduct.updateOrderedProduct,
+    verifyAuth,
+    OrderedProduct.updateOrderedProduct
+);
 
 module.exports = router;

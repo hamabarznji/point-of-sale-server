@@ -13,8 +13,12 @@ async function addTransfareedProduct(req, res, next) {
 
         const product = await Product.getProduct(product_id);
         const { weight: oldWeight, qty: oldQty } = product;
-        console.log(oldWeight, oldQty, "old valuessss");
-        console.log(weight, qty, "body valuessss");
+        /*     if (oldWeight <= 0 || oldQty <= 0) {
+            return res
+                .status(422)
+                .send("There is no engough product to transfare!");
+        } */
+
         const transfareedProduct =
             await TransfareedProduct.addTransfareedProductn(req.body);
 

@@ -8,7 +8,7 @@ const OrderedProduct = sequelize.define(
     {
         id: {
             type: Sequelize.INTEGER(13),
-            autoIncrement: false,
+            autoIncrement: true,
             allowNull: false,
             primaryKey: true,
         },

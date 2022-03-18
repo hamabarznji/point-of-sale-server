@@ -4,8 +4,8 @@ const verifyAuth = require("../../middleware/verifyAuth");
 
 const Order = require("../controllers/Order");
 
-router.post(routes.order.addOrder, verifyAuth, Order.addOrder);
-router.get(routes.order.get.getOrders, verifyAuth, Order.getOrders);
-router.get(routes.order.get.getOrder, verifyAuth, Order.getOrder);
+router.post(routes.order.addOrder, Order.addOrder);
+router.get(routes.order.getOrders, verifyAuth, Order.getOrders);
+router.get(routes.order.getOrder, verifyAuth, Order.getOrder);
 
 module.exports = router;

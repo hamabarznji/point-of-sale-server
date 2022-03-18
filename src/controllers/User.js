@@ -10,7 +10,9 @@ async function login(req, res) {
 
         const isMatch = await bcrypt.compare(req.body.password, user.password);
         if (!isMatch) {
-            throw new Error("Something went wrong! Please try again!");
+            return res
+                .status(404)
+                .send({ error: "Something went wrong! Please try again!" });
         }
         const token = loginAuth(user.id, user.role);
         res.status(200).send({

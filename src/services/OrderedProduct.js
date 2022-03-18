@@ -27,7 +27,7 @@ async function getOrderedProduct(id) {
 
 async function addOrderedProduct(product) {
     try {
-        return await OrderedProduct.create(product);
+        return await OrderedProduct.bulkCreate(product);
     } catch (err) {
         return err.message;
     }

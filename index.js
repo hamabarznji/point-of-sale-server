@@ -16,7 +16,7 @@ const StoreRouter = require("./src/routers/store");
 const SupplierRouter = require("./src/routers/supplier");
 const UserRouter = require("./src/routers/user");
 const TransfareedProductRouter = require("./src/routers/TransfareedProduct");
-
+const PaymentRouter = require("./src/routers/Payment");
 app.use(express.json());
 app.use(cors());
 
@@ -31,7 +31,7 @@ app.use(StoreRouter);
 app.use(SupplierRouter);
 app.use(UserRouter);
 app.use(TransfareedProductRouter);
-
+app.use(PaymentRouter);
 app.use(SwaggerRouter);
 
 app.listen(process.env.PORT || 3002, () =>

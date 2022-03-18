@@ -22,6 +22,8 @@ async function getOrder(req, res, next) {
 async function getOrders(req, res, next) {
     try {
         const data = await Order.getOrders();
+        console.log("hereeeeeeeeeeeeeeeeeeeeeee");
+        /*    console.log(data);
         const orders = data.map((order) => {
             return {
                 id: order.id,
@@ -34,8 +36,9 @@ async function getOrders(req, res, next) {
                 description: order.description,
                 date: order.date,
             };
-        });
-        res.status(200).send(orders);
+        }); */
+
+        res.status(200).send(data);
     } catch (erorr) {
         res.status(404).send(erorr);
     }

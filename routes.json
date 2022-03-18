@@ -70,10 +70,8 @@
         "updateSupplier": "/suppliers/:id"
     },
     "order": {
-        "get": {
-            "getOrders": "/orders",
-            "getOrder": "/orders/:id"
-        },
+        "getOrders": "/orders",
+        "getOrder": "/orders/:id",
         "addOrder": "/orders",
         "updateOrder": "/orders/:id"
     },
@@ -88,5 +86,11 @@
         "getTransfareedProduct": "/transfareedproducts/:id",
         "addTransfareedproduct": "/transfareedproducts",
         "updateTransfareedProduct": "/transfareedproducts/:id"
+    },
+    "Payment": {
+        "getPayments": "/payments",
+        "getPayment": "/payments/:id",
+        "addPayment": "/payments",
+        "updatePayment": "/payments/:id"
     }
 }

@@ -29,7 +29,18 @@ async function getOrderedProducts(req, res, next) {
 
 async function addOrderedProduct(req, res, next) {
     try {
-        return await OrderedProduct.addOrderedProduct(req.body);
+        const orderedProducts = await OrderedProduct.addOrderedProduct(
+            req.body
+        );
+        res.status(200).json(orderedProducts);
+    } catch (err) {
+        return err.message;
+    }
+}
+
+async function updateOrderedProduct(req, res, next) {
+    try {
+        return await OrderedProduct.updateOrderedProduct(req.body);
     } catch (err) {
         return err.message;
     }
@@ -40,4 +51,5 @@ module.exports = {
     getOrderedProducts,
     addOrderedProduct,
     getAll,
+    updateOrderedProduct,
 };
