@@ -22,23 +22,40 @@ async function getOrder(req, res, next) {
 async function getOrders(req, res, next) {
     try {
         const data = await Order.getOrders();
-        console.log("hereeeeeeeeeeeeeeeeeeeeeee");
-        /*    console.log(data);
         const orders = data.map((order) => {
             return {
                 id: order.id,
-                storeName: order.store.name,
-                userName: order.user.name,
-                customerName: order.customer.name,
-                store_id: order.store_id,
-                user_id: order.user_id,
-                customer_phone: order.customer_phone,
-                description: order.description,
                 date: order.date,
+                storeId: order.store_id,
+                storeName: order.store.name,
+                userId: order.user_id,
+                userName: order.user.username,
+                customerName: order.customer.name,
+                customerPhone: order.customer_phone,
+                description: order.description,
+                orderededProducts: order.ordereded_products.map(
+                    (orderedProduct) => {
+                        return {
+                            id: orderedProduct.id,
+                            qty: orderedProduct.qty,
+                            weight: orderedProduct.weight,
+                            price: orderedProduct.price,
+                            transfareedProductId:
+                                orderedProduct.transfareedProduct_id,
+                        };
+                    }
+                ),
+                payments: order.payments.map((payment) => {
+                    return {
+                        id: payment.id,
+                        date: payment.paid_date,
+                        amount: payment.amount,
+                    };
+                }),
             };
-        }); */
-
-        res.status(200).send(data);
+        });
+        const { orderedProducts, payments } = orders;
+        res.status(200).send(orders);
     } catch (erorr) {
         res.status(404).send(erorr);
     }

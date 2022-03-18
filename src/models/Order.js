@@ -36,7 +36,7 @@ const Order = sequelize.define(
             },
             references: {
                 model: Customer,
-                field: "phone",
+                field: "id",
             },
         },
         description: {

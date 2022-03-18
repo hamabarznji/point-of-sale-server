@@ -41,7 +41,7 @@ const Payment = sequelize.define(
     }
 );
 Payment.belongsTo(Order, { foreignKey: "order_id" });
-Order.hasMany(Order, { foreignKey: "order_id" });
+Order.hasMany(Payment, { foreignKey: "order_id" });
 Payment.sync()
     .then((data) => console.log(data, "Payment table created"))
     .catch((err) => console.log(err));

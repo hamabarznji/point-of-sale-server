@@ -1,22 +1,23 @@
-const Ordere = require("../models/Order");
+const Order = require("../models/Order");
 
 async function addOrder(order) {
     try {
-        return await Ordere.create(order);
+        return await Order.create(order);
     } catch (err) {
         return err.message;
     }
 }
 async function getOrders() {
     try {
-        return await Ordere.findAll();
+        console.log("here 12");
+        return await Order.findAll({ include: { all: true } });
     } catch (err) {
         return err.message;
     }
 }
 async function getOrder(id) {
     try {
-        return await Ordere.findOne({ where: { id: id } });
+        return await Order.findOne({ where: { id: id } });
     } catch (err) {
         return err.message;
     }
