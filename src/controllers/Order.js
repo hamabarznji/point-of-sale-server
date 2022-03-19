@@ -1,3 +1,4 @@
+const { RFC_2822 } = require("moment");
 const Order = require("../services/Order");
 
 async function addOrder(req, res, next) {
@@ -7,6 +8,14 @@ async function addOrder(req, res, next) {
         res.status(200).send(order);
     } catch (erorr) {
         res.status(404).send(erorr);
+    }
+}
+
+function totalPriceCalculator(price, weight, qty) {
+    if (weight !== 0) {
+        return weight * price;
+    } else if (qty !== 0) {
+        return qty * price;
     }
 }
 
@@ -24,7 +33,7 @@ async function getOrders(req, res, next) {
         const data = await Order.getOrders();
         const orders = data.map((order) => {
             return {
-                id: order.id,
+                orderId: order.id,
                 date: order.date,
                 storeId: order.store_id,
                 storeName: order.store.name,
@@ -45,6 +54,20 @@ async function getOrders(req, res, next) {
                         };
                     }
                 ),
+
+                totalAmount: order.ordereded_products.reduce(
+                    (sum, orderedProduct) => {
+                        return (
+                            sum +
+                            totalPriceCalculator(
+                                orderedProduct.price,
+                                orderedProduct.weight,
+                                orderedProduct.qty
+                            )
+                        );
+                    },
+                    0
+                ),
                 payments: order.payments.map((payment) => {
                     return {
                         id: payment.id,
@@ -52,9 +75,14 @@ async function getOrders(req, res, next) {
                         amount: payment.amount,
                     };
                 }),
+
+                totalPaidAmount: order.payments.reduce(
+                    (sum, payment) => sum + payment.amount,
+                    0
+                ),
             };
         });
-        const { orderedProducts, payments } = orders;
+
         res.status(200).send(orders);
     } catch (erorr) {
         res.status(404).send(erorr);
