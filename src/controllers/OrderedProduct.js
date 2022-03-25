@@ -1,7 +1,7 @@
 const OrderedProduct = require("../services/OrderedProduct");
 const Order = require("../services/Order");
 const Payment = require("../services/Payment");
-
+const TransfareedProduct = require("../services/TransfareedProduct");
 async function getOrderedProduct(id) {
     try {
         return await OrderedProduct.getOrderedProduct(id);
@@ -33,15 +33,17 @@ async function addOrderedProduct(req, res, next) {
         const { ops, orderInfo, paymentInfo } = req.body;
         const order = await Order.addOrder(orderInfo);
         const { id } = order;
+
         const orderedProductsInfo = ops.map((item) => {
             return {
                 order_id: id,
-                transfareedProduct_id: 1,
+                transfareedProduct_id: item.transfareedProduct_id,
                 qty: item.qty,
                 weight: item.weight,
                 price: item.price,
             };
         });
+
         const orderedProducts = await OrderedProduct.addOrderedProduct(
             orderedProductsInfo
         );
@@ -50,6 +52,7 @@ async function addOrderedProduct(req, res, next) {
             order_id: id,
             ...paymentInfo,
         });
+
         res.status(200).json(orderedProducts);
     } catch (err) {
         return err.message;

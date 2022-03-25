@@ -29,8 +29,9 @@ async function getOrder(req, res, next) {
     }
 }
 async function getOrders(req, res, next) {
+    console.log(req.params);
     try {
-        const data = await Order.getOrders();
+        const data = await Order.getOrders(req.params.storeid);
         const orders = data.map((order) => {
             return {
                 orderId: order.id,

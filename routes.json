@@ -24,7 +24,7 @@
     },
     "customer": {
         "get": {
-            "getCustomers": "/customers",
+            "getCustomers": "/customers/stores/:storeid",
             "getCustomer": "/customers/:id",
             "getCustomersForSpecificStore": "/customers/store/:storeid"
         },
@@ -33,7 +33,7 @@
     },
     "employee": {
         "get": {
-            "getEmployees": "/employees",
+            "getEmployees": "/employees/stores/:storeid",
             "getEmployee": "/employees/:id"
         },
         "addEmployee": "/employees",
@@ -48,7 +48,7 @@
     "expense": {
         "get": {
             "getExpense": "/expenses/:id",
-            "getExpenses": "/expenses"
+            "getExpenses": "/expenses/stores/:storeid"
         },
         "addExpense": "/expenses",
         "updateExpense": "/expenses/:id"
@@ -70,7 +70,7 @@
         "updateSupplier": "/suppliers/:id"
     },
     "order": {
-        "getOrders": "/orders",
+        "getOrders": "/orders/stores/:storeid",
         "getOrder": "/orders/:id",
         "addOrder": "/orders",
         "updateOrder": "/orders/:id"
@@ -82,7 +82,7 @@
         "updateOrderedProduct": "/orderedproducts/:id"
     },
     "TransfareedProduct": {
-        "getTransfareedProducts": "/transfareedproducts",
+        "getTransfareedProducts": "/transfareedproducts/stores/:storeid",
         "getTransfareedProduct": "/transfareedproducts/:id",
         "addTransfareedproduct": "/transfareedproducts",
         "updateTransfareedProduct": "/transfareedproducts/:id"

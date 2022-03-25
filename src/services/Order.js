@@ -7,10 +7,12 @@ async function addOrder(order) {
         return err.message;
     }
 }
-async function getOrders() {
+async function getOrders(storeid) {
     try {
-        console.log("here 12");
-        return await Order.findAll({ include: { all: true } });
+        return await Order.findAll({
+            include: { all: true },
+            where: { store_id: storeid },
+        });
     } catch (err) {
         return err.message;
     }

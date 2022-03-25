@@ -17,7 +17,7 @@ async function addCustomer(req, res, next) {
 
 async function getCustomers(req, res, next) {
     try {
-        const customers = await Customer.getCustomers();
+        const customers = await Customer.getCustomers(req.params.storeid);
 
         res.status(200).send(customers);
     } catch (erorr) {

@@ -1,8 +1,13 @@
 const Expense = require("../models/Expense");
 
-async function getExpenses() {
+async function getExpenses(storeid) {
     try {
-        return await Expense.findAll({ include: { all: true } });
+        return await Expense.findAll({
+            include: { all: true },
+            where: {
+                store_id: storeid,
+            },
+        });
     } catch (err) {
         return err.message;
     }

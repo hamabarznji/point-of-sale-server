@@ -11,7 +11,7 @@ async function addExpense(req, res, next) {
 
 async function getExpenses(req, res, next) {
     try {
-        const data = await Expense.getExpenses();
+        const data = await Expense.getExpenses(req.params.storeid);
         const expenses = data.map((expense) => {
             return {
                 id: expense.id,

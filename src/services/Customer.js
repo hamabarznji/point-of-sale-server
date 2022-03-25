@@ -1,7 +1,6 @@
 const Customer = require("../models/Customer");
 
 async function addCustomer(customer) {
-    console.log(customer);
     try {
         return await Customer.create({
             id: customer.id,
@@ -14,9 +13,12 @@ async function addCustomer(customer) {
     }
 }
 
-async function getCustomers() {
+async function getCustomers(storeid) {
     try {
-        return await Customer.findAll();
+        return await Customer.findAll({
+            include: { all: true },
+            where: { store_id: storeid },
+        });
     } catch (err) {
         return err.message;
     }

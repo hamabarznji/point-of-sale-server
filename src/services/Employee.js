@@ -1,8 +1,13 @@
 const Employee = require("../models/Employee");
 
-async function getEmployees() {
+async function getEmployees(storeid) {
     try {
-        return await Employee.findAll({ include: { all: true } });
+        return await Employee.findAll({
+            include: { all: true },
+            where: {
+                store_id: storeid,
+            },
+        });
     } catch (err) {
         return err.message;
     }

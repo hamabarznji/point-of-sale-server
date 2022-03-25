@@ -19,7 +19,7 @@ async function addEmployee(req, res, next) {
 
 async function getEmployees(req, res, next) {
     try {
-        const data = await Employee.getEmployees();
+        const data = await Employee.getEmployees(req.params.storeid);
         const employees = data.map((employee) => {
             return {
                 id: employee.id,

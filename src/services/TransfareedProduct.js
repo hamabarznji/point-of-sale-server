@@ -41,10 +41,13 @@ async function getTransfareedProduct(id) {
     }
 }
 
-async function getAllTransfareedProductsWithAssociatedTables() {
+async function getAllTransfareedProductsWithAssociatedTables(store_id) {
     try {
         //get the store name from Store and Product name from Prodcut
-        return await TransfareedProduct.findAll({ include: { all: true } });
+        return await TransfareedProduct.findAll({
+            include: { all: true },
+            where: { store_id: store_id },
+        });
     } catch (err) {
         return err.message;
     }
