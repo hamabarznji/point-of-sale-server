@@ -28,8 +28,48 @@ async function getOrder(req, res, next) {
         res.status(404).send(erorr);
     }
 }
+
+async function getOrdersByCustomerId(req, res, next) {
+    try {
+        const data = await Order.getOrdersByCustomerId(
+            req.params.customerphone
+        );
+        const orders = data.map((order) => {
+            return {
+                orderedProducts: order.ordereded_products,
+                description: order.description,
+                customerName: order.customer.name,
+                customerPhone: order.customer_phone,
+                date: order.date,
+                orderId: order.id,
+                payments: order.payments,
+
+                totalAmount: order.ordereded_products.reduce(
+                    (sum, orderedProduct) => {
+                        return (
+                            sum +
+                            totalPriceCalculator(
+                                orderedProduct.price,
+                                orderedProduct.weight,
+                                orderedProduct.qty
+                            )
+                        );
+                    },
+                    0
+                ),
+                totalPaidAmount: order.payments.reduce(
+                    (sum, payment) => sum + payment.amount,
+                    0
+                ),
+            };
+        });
+        res.status(200).send(orders);
+    } catch (erorr) {
+        return erorr.message;
+    }
+}
+
 async function getOrders(req, res, next) {
-    console.log(req.params);
     try {
         const data = await Order.getOrders(req.params.storeid);
         const orders = data.map((order) => {
@@ -89,4 +129,4 @@ async function getOrders(req, res, next) {
         res.status(404).send(erorr);
     }
 }
-module.exports = { addOrder, getOrder, getOrders };
+module.exports = { addOrder, getOrder, getOrders, getOrdersByCustomerId };

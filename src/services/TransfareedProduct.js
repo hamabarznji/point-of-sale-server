@@ -1,4 +1,5 @@
 const TransfareedProduct = require("../models/TransfareedProduct");
+const Sequelize = require("sequelize");
 
 async function addTransfareedProductn(transfareedproduct) {
     try {
@@ -53,6 +54,54 @@ async function getAllTransfareedProductsWithAssociatedTables(store_id) {
     }
 }
 
+async function updateOrderedTransfarredProducts(orderedProductsInfo) {
+    try {
+        const arrayofIds = orderedProductsInfo.map(
+            (id) => id.transfareedProduct_id
+        );
+        const transfareedproducts = await TransfareedProduct.findAll({
+            include: { all: true },
+            where: {
+                id: {
+                    [Sequelize.Op.in]: arrayofIds,
+                },
+            },
+        });
+
+        const updatedTransfareedProducts = transfareedproducts.map(
+            (transfareedproduct) => {
+                return {
+                    id: transfareedproduct.id,
+                    qty:
+                        transfareedproduct.qty -
+                        orderedProductsInfo.find(
+                            (op) =>
+                                op.transfareedProduct_id ==
+                                transfareedproduct.id
+                        ).qty,
+                    weight:
+                        transfareedproduct.weight -
+                        orderedProductsInfo.find(
+                            (op) =>
+                                op.transfareedProduct_id ==
+                                transfareedproduct.id
+                        ).weight,
+                };
+            }
+        );
+
+        Promise.all(
+            updatedTransfareedProducts.map((transfareedproduct) => {
+                return TransfareedProduct.update(transfareedproduct, {
+                    where: { id: transfareedproduct.id },
+                });
+            })
+        );
+    } catch (err) {
+        return err.message;
+    }
+}
+
 module.exports = {
     addTransfareedProductn,
     updateTransfareedProduct,
@@ -60,4 +109,5 @@ module.exports = {
     getTransfareedProducts,
     getTransfareedProduct,
     getAllTransfareedProductsWithAssociatedTables,
+    updateOrderedTransfarredProducts,
 };

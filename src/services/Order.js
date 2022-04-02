@@ -17,6 +17,17 @@ async function getOrders(storeid) {
         return err.message;
     }
 }
+
+async function getOrdersByCustomerId(customer_phone) {
+    try {
+        return await Order.findAll({
+            include: { all: true },
+            where: { customer_phone: customer_phone },
+        });
+    } catch (err) {
+        return err.message;
+    }
+}
 async function getOrder(id) {
     try {
         return await Order.findOne({ where: { id: id } });
@@ -25,4 +36,4 @@ async function getOrder(id) {
     }
 }
 
-module.exports = { addOrder, getOrders, getOrder };
+module.exports = { addOrder, getOrders, getOrder, getOrdersByCustomerId };

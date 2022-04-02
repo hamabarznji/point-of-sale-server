@@ -174,7 +174,7 @@
      * tags:
      *  name: Customers
      *
-     * /customers:
+     * /customers/stores/{storeid}:
      *  get:
      *      tags: [Customers]
      *
@@ -210,49 +210,47 @@
      *
      */
 }
-//expense
-{
-    /**
-     * @swagger
-     * tags:
-     *  name: Employees
-     *
-     * /employees:
-     *  get:
-     *      tags: [Employees]
-     *
-     */
-    /**
-     * @swagger
-     * tags:
-     *  name: Employees
-     *
-     * /employees/{id}:
-     *  get:
-     *      tags: [Employees]
-     *
-     */
-    /**
-     * @swagger
-     * tags:
-     *  name: Employees
-     *
-     * /employees:
-     *  post:
-     *      tags: [Employees]
-     *
-     */
-    /**
-     * @swagger
-     * tags:
-     *  name: Employees
-     *
-     * /employees/{id}:
-     *  put:
-     *      tags: [Employees]
-     *
-     */
-}
+//exmployees
+/**
+ * @swagger
+ * tags:
+ *  name: Employees
+ *
+ * /employees/stores/{storeid}:
+ *  get:
+ *      tags: [Employees]
+ *
+ */
+/**
+ * @swagger
+ * tags:
+ *  name: Employees
+ *
+ * /employees/{id}:
+ *  get:
+ *      tags: [Employees]
+ *
+ */
+/**
+ * @swagger
+ * tags:
+ *  name: Employees
+ *
+ * /employees:
+ *  post:
+ *      tags: [Employees]
+ *
+ */
+/**
+ * @swagger
+ * tags:
+ *  name: Employees
+ *
+ * /employees/{id}:
+ *  put:
+ *      tags: [Employees]
+ *
+ */
 
 //employee
 {
@@ -261,7 +259,7 @@
      * tags:
      *  name: Expenses
      *
-     * /expenses:
+     * /expenses/stores/{storeid}:
      *  get:
      *      tags: [Expenses]
      *
@@ -305,7 +303,7 @@
      * tags:
      *  name: Orders
      *
-     * /orders:
+     * /orders/stores/{storeid}:
      *  get:
      *      tags: [Orders]
      *
@@ -349,7 +347,7 @@
      * tags:
      *  name: OrderedProducts
      *
-     * /orderedProducts:
+     * /orderedProducts/stores/{storeid}:
      *  get:
      *      tags: [OrderedProducts]
      *

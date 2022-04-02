@@ -1,4 +1,5 @@
 const OrderedProduct = require("../models/OrderedProduct");
+const Sequelize = require("sequelize");
 
 async function getOrderedProducts() {
     try {

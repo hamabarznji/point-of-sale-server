@@ -14,6 +14,7 @@ router.get(
     verifyAuth,
     OrderedProduct.getAll
 );
+
 router.get(
     routes.orderedProduct.getOrderedProduct,
     verifyAuth,

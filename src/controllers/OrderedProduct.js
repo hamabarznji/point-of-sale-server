@@ -2,6 +2,7 @@ const OrderedProduct = require("../services/OrderedProduct");
 const Order = require("../services/Order");
 const Payment = require("../services/Payment");
 const TransfareedProduct = require("../services/TransfareedProduct");
+
 async function getOrderedProduct(id) {
     try {
         return await OrderedProduct.getOrderedProduct(id);
@@ -27,6 +28,14 @@ async function getOrderedProducts(req, res, next) {
         return err.message;
     }
 }
+async function getOrderedProductWithArrayOfids(req, res, next) {
+    try {
+        const op = OrderedProduct.getOrderedProductWithArrayOfids();
+        res.status(200).json(op);
+    } catch (err) {
+        return err.message;
+    }
+}
 
 async function addOrderedProduct(req, res, next) {
     try {
@@ -43,7 +52,6 @@ async function addOrderedProduct(req, res, next) {
                 price: item.price,
             };
         });
-
         const orderedProducts = await OrderedProduct.addOrderedProduct(
             orderedProductsInfo
         );
@@ -53,7 +61,10 @@ async function addOrderedProduct(req, res, next) {
             ...paymentInfo,
         });
 
-        res.status(200).json(orderedProducts);
+        const x = await TransfareedProduct.updateOrderedTransfarredProducts(
+            orderedProductsInfo
+        );
+        await Order.res.status(200).json(orderedProducts);
     } catch (err) {
         return err.message;
     }

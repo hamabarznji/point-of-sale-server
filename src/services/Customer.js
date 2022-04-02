@@ -26,7 +26,10 @@ async function getCustomers(storeid) {
 
 async function getCustomer(id) {
     try {
-        return await Customer.findOne({ where: { id: id } });
+        return await Customer.findOne({
+            include: { all: true },
+            where: { id: id },
+        });
     } catch (err) {
         return err.message;
     }

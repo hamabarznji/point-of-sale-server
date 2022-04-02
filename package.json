@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@sequelize/core": "^7.0.0-alpha.10",
     "bcrypt": "^5.0.1",
     "chalk": "^5.0.1",
     "cors": "^2.8.5",
