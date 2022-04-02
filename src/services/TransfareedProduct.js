@@ -1,5 +1,6 @@
 const TransfareedProduct = require("../models/TransfareedProduct");
 const Sequelize = require("sequelize");
+const { Op } = require("sequelize");
 
 async function addTransfareedProductn(transfareedproduct) {
     try {
@@ -47,7 +48,17 @@ async function getAllTransfareedProductsWithAssociatedTables(store_id) {
         //get the store name from Store and Product name from Prodcut
         return await TransfareedProduct.findAll({
             include: { all: true },
-            where: { store_id: store_id },
+            where: {
+                store_id: store_id,
+                [Op.or]: {
+                    qty: {
+                        [Sequelize.Op.gt]: 0,
+                    },
+                    weight: {
+                        [Sequelize.Op.gt]: 0,
+                    },
+                },
+            },
         });
     } catch (err) {
         return err.message;

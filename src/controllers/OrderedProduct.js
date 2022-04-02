@@ -28,20 +28,11 @@ async function getOrderedProducts(req, res, next) {
         return err.message;
     }
 }
-async function getOrderedProductWithArrayOfids(req, res, next) {
-    try {
-        const op = OrderedProduct.getOrderedProductWithArrayOfids();
-        res.status(200).json(op);
-    } catch (err) {
-        return err.message;
-    }
-}
 
 async function addOrderedProduct(req, res, next) {
     try {
-        const { ops, orderInfo, paymentInfo } = req.body;
-        const order = await Order.addOrder(orderInfo);
-        const { id } = order;
+        const { ops, orderDetails, paymentInfo } = req.body;
+        const { id } = orderDetails;
 
         const orderedProductsInfo = ops.map((item) => {
             return {
