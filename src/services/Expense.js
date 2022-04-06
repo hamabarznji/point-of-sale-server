@@ -1,5 +1,5 @@
 const Expense = require("../models/Expense");
-
+const Sequelize = require("sequelize");
 async function getExpenses(storeid) {
     try {
         return await Expense.findAll({
@@ -37,9 +37,26 @@ async function updateExpense(expense) {
     }
 }
 
+async function expenseReport(fromDate, toDate, storeid) {
+    try {
+        return await Expense.findAll({
+            include: { all: true },
+            where: {
+                store_id: storeid,
+                date: {
+                    [Sequelize.Op.between]: [fromDate, toDate],
+                },
+            },
+        });
+    } catch (err) {
+        return err.message;
+    }
+}
+
 module.exports = {
     getExpenses,
     getExpense,
     addExpense,
     updateExpense,
+    expenseReport,
 };

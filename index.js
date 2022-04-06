@@ -1,4 +1,6 @@
 require("dotenv").config();
+const jwt = require("jsonwebtoken");
+
 const express = require("express");
 var cors = require("cors");
 const SwaggerRouter = require("./src/routers/swagger");
@@ -33,6 +35,23 @@ app.use(UserRouter);
 app.use(TransfareedProductRouter);
 app.use(PaymentRouter);
 app.use(SwaggerRouter);
+
+/* app.get("/auth", async (req, res, next) => {
+    try {
+        try {
+            const verify = jwt.verify(
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IjEiLCJpYXQiOjE2NDg5Mjg5NTR9.XF8e-Uk8YHBGW4tIY54IPcuvYrh-EIlVPEv_1KH9uQA",
+                process.env.SECRETKEY
+            );
+
+            res.send(!!verify);
+        } catch (error) {
+            res.status(401).send("Unauthorized");
+        }
+    } catch (error) {
+        res.status(401).send("Unauthorized");
+    }
+}); */
 
 app.listen(process.env.PORT || 3002, () =>
     console.log(`Listening on port ${process.env.PORT}`)

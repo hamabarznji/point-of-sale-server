@@ -28,9 +28,16 @@ async function deleteTransfareedProduct(transfareedproduct) {
     }
 }
 
-async function getTransfareedProducts() {
+async function getTransfareedProducts(ids) {
     try {
-        return await TransfareedProduct.findAll();
+        return await TransfareedProduct.findAll({
+            include: { all: true },
+            where: {
+                id: {
+                    [Sequelize.Op.in]: ids,
+                },
+            },
+        });
     } catch (err) {
         return err.message;
     }
@@ -113,6 +120,23 @@ async function updateOrderedTransfarredProducts(orderedProductsInfo) {
     }
 }
 
+async function transfarredProductsReport(fromDate, toDate, storeid) {
+    console.log(fromDate, toDate, storeid);
+    try {
+        return await TransfareedProduct.findAll({
+            include: { all: true },
+            where: {
+                store_id: storeid,
+                date: {
+                    [Sequelize.Op.between]: [fromDate, toDate],
+                },
+            },
+        });
+    } catch (err) {
+        return err.message;
+    }
+}
+
 module.exports = {
     addTransfareedProductn,
     updateTransfareedProduct,
@@ -121,4 +145,5 @@ module.exports = {
     getTransfareedProduct,
     getAllTransfareedProductsWithAssociatedTables,
     updateOrderedTransfarredProducts,
+    transfarredProductsReport,
 };

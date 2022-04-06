@@ -47,4 +47,39 @@ async function updateExpense(req, res, next) {
     }
 }
 
-module.exports = { addExpense, getExpenses, getExpense, updateExpense };
+async function expenseReport(req, res, next) {
+    try {
+        const expenses = await Expense.expenseReport(
+            req.params.from,
+            req.params.to,
+            req.params.storeid
+        );
+
+        const expenseInfo = expenses.map((expense) => {
+            return {
+                description: expense.description,
+                amount: expense.amount,
+            };
+        });
+        const report = {
+            storeName: expenses[0].store.name,
+            expenses: expenseInfo,
+            totalExpensesAmount: expenses.reduce((acc, curr) => {
+                return acc + curr.amount;
+            }, 0),
+            numberOfExpenses: expenseInfo.length,
+        };
+
+        res.status(200).send(report);
+    } catch (erorr) {
+        res.status(404).send(erorr);
+    }
+}
+
+module.exports = {
+    addExpense,
+    getExpenses,
+    getExpense,
+    updateExpense,
+    expenseReport,
+};

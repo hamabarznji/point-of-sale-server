@@ -18,11 +18,11 @@ async function getOrders(storeid) {
     }
 }
 
-async function getOrdersByCustomerId(customer_phone) {
+async function getOrdersByCustomerId(id) {
     try {
         return await Order.findAll({
             include: { all: true },
-            where: { customer_phone: customer_phone },
+            where: { id: id },
         });
     } catch (err) {
         return err.message;

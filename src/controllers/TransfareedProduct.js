@@ -64,8 +64,8 @@ async function getTransfareedProduct(req, res, next) {
         res.status(404).send(erorr);
     }
 }
+
 async function getAllTransfareedProductsWithAssociatedTables(req, res, next) {
-    console.log(req.params.storeid);
     try {
         const transfareedProducts =
             await TransfareedProduct.getAllTransfareedProductsWithAssociatedTables(
@@ -91,11 +91,43 @@ async function getAllTransfareedProductsWithAssociatedTables(req, res, next) {
         res.status(404).send(erorr);
     }
 }
+async function transfarredProductsReport(req, res, next) {
+    try {
+        const transfareedProducts =
+            await TransfareedProduct.transfarredProductsReport(
+                req.params.from,
+                req.params.to,
+                req.params.storeid
+            );
 
+        const report = {
+            productInfo: transfareedProducts.map((transfareedProduct) => {
+                return {
+                    qty: transfareedProduct.qty,
+                    weight: transfareedProduct.weight,
+                    color: transfareedProduct.product.color,
+                    productName: transfareedProduct.product.name,
+                };
+            }),
+            numberOfTransfareedProducts: transfareedProducts.length,
+            totalWeight: transfareedProducts.reduce((acc, curr) => {
+                return acc + curr.weight;
+            }, 0),
+            totalQty: transfareedProducts.reduce((acc, curr) => {
+                return acc + curr.qty;
+            }, 0),
+        };
+
+        res.status(200).send(report);
+    } catch (erorr) {
+        res.status(404).send(erorr);
+    }
+}
 module.exports = {
     addTransfareedProduct,
     updateTransfareedProduct,
     getTransfareedProducts,
     getTransfareedProduct,
     getAllTransfareedProductsWithAssociatedTables,
+    transfarredProductsReport,
 };

@@ -1,4 +1,6 @@
 const Store = require("../models/Store");
+const TransfareedProduct = require("../models/TransfareedProduct");
+const Sequelize = require("sequelize");
 
 async function getStores() {
     try {
@@ -34,9 +36,26 @@ async function updateStore(store) {
     }
 }
 
+async function storeReport(fromDate, toDate, id) {
+    try {
+        return await TransfareedProduct.findAll({
+            include: { all: true },
+            where: {
+                store_id: id,
+                date: {
+                    [Sequelize.Op.between]: [fromDate, toDate],
+                },
+            },
+        });
+    } catch (err) {
+        return err.message;
+    }
+}
+
 module.exports = {
     addStore,
     getStores,
     getStore,
     updateStore,
+    storeReport,
 };

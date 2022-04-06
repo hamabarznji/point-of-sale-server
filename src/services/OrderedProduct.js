@@ -8,6 +8,16 @@ async function getOrderedProducts() {
         return err.message;
     }
 }
+async function getOrderedproductsbyOrderId(orderId) {
+    try {
+        return await OrderedProduct.findAll({
+            include: { all: true },
+            where: { order_id: orderId },
+        });
+    } catch (err) {
+        return err.message;
+    }
+}
 
 //getAll
 async function getAll() {
@@ -43,6 +53,20 @@ async function updateOrderedProduct(product) {
         return err.message;
     }
 }
+async function report() {
+    try {
+        return await OrderedProduct.findOne({
+            where: {
+                store_id: 1,
+                date: {
+                    [Sequelize.Op.between]: ["2022-03-19", " 2022-03-26"],
+                },
+            },
+        });
+    } catch (err) {
+        return err.message;
+    }
+}
 
 module.exports = {
     getOrderedProducts,
@@ -50,4 +74,6 @@ module.exports = {
     addOrderedProduct,
     updateOrderedProduct,
     getAll,
+    getOrderedproductsbyOrderId,
+    report,
 };

@@ -1,5 +1,6 @@
 const Product = require("../models/Product");
-
+const Sequelize = require("sequelize");
+const { Op } = require("sequelize");
 async function addProduct(product) {
     try {
         return await Product.create(product);
@@ -34,9 +35,25 @@ async function getProduct(id) {
     }
 }
 
+async function productsReport(fromDate, toDate) {
+    try {
+        return await Product.findAll({
+            include: { all: true },
+            where: {
+                date: {
+                    [Sequelize.Op.between]: [fromDate, toDate],
+                },
+            },
+        });
+    } catch (err) {
+        return err.message;
+    }
+}
+
 module.exports = {
     addProduct,
     getProducts,
     updateProduct,
     getProduct,
+    productsReport,
 };

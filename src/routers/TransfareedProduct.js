@@ -16,6 +16,10 @@ router.get(
     TransfareedProduct.getAllTransfareedProductsWithAssociatedTables
 );
 router.get(
+    routes.TransfareedProduct.reportTransfareedProduct,
+    TransfareedProduct.transfarredProductsReport
+);
+router.get(
     routes.TransfareedProduct.getTransfareedProduct,
     verifyAuth,
     TransfareedProduct.getTransfareedProduct

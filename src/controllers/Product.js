@@ -98,9 +98,63 @@ async function getProduct(req, res, next) {
     }
 }
 
+function totalPriceCalculator(price, weight, qty) {
+    if (weight !== 0) {
+        return weight * price;
+    } else if (qty !== 0) {
+        return qty * price;
+    }
+}
+
+async function productReport(req, res, next) {
+    try {
+        const products = await Product.productsReport(
+            req.params.from,
+            req.params.to
+        );
+
+        productInfo = {
+            productInfo: products.map((product) => {
+                return {
+                    name: product.name,
+                    supplierName: product.supplier.name,
+                    price: product.price,
+                    qty: product.qty,
+                    color: product.color,
+                    weight: product.weight,
+                    total: totalPriceCalculator(
+                        product.price,
+                        product.weight,
+                        product.qty
+                    ),
+                    numberOfTransfareedProducts:
+                        product.Transfareed_Products.length,
+                };
+            }),
+        };
+
+        const report = {
+            ...productInfo,
+            totalAmount: productInfo.productInfo.reduce(
+                (total, product) => total + product.total,
+                0
+            ),
+            totalNumberOfTransfareedProducts: productInfo.productInfo.reduce(
+                (total, product) => total + product.numberOfTransfareedProducts,
+                0
+            ),
+        };
+
+        res.status(200).send(report);
+    } catch (err) {
+        res.status(404).send(err);
+    }
+}
+
 module.exports = {
     addProduct,
     getProducts,
     updateProduct,
     getProduct,
+    productReport,
 };
