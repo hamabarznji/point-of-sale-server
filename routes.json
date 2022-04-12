@@ -26,6 +26,7 @@
     "customer": {
         "get": {
             "getCustomers": "/customers/stores/:storeid",
+            "getCustomerReport": "/customers/:id/reports",
             "getCustomer": "/customers/:id",
             "getCustomersForSpecificStore": "/customers/store/:storeid"
         },

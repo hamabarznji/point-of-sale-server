@@ -76,6 +76,19 @@ async function debtReport(fromDate, toDate, storeid) {
     }
 }
 
+async function customerReport(id) {
+    try {
+        return await Order.findAll({
+            include: { all: true },
+            where: {
+                customer_phone: id,
+            },
+        });
+    } catch (err) {
+        return err.message;
+    }
+}
+
 module.exports = {
     addCustomer,
     getCustomer,
@@ -83,4 +96,5 @@ module.exports = {
     updateCustomer,
     getCustomersForSpecificStore,
     debtReport,
+    customerReport,
 };
