@@ -101,5 +101,8 @@
     },
     "report": {
         "transfareedproductsReport": "/reports"
+    },
+    "dashboard": {
+        "getDashboard": "/dashboard/stores/:storeid"
     }
 }

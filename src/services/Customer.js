@@ -1,5 +1,6 @@
 const Customer = require("../models/Customer");
-
+const Order = require("../models/Order");
+const Sequelize = require("sequelize");
 async function addCustomer(customer) {
     try {
         return await Customer.create({
@@ -59,10 +60,27 @@ async function updateCustomer(customer) {
     }
 }
 
+async function debtReport(fromDate, toDate, storeid) {
+    try {
+        return await Order.findAll({
+            include: { all: true },
+            where: {
+                date: {
+                    [Sequelize.Op.between]: ["2022-03-15", "2022-04-06"],
+                },
+                store_id: 1,
+            },
+        });
+    } catch (err) {
+        return err.message;
+    }
+}
+
 module.exports = {
     addCustomer,
     getCustomer,
     getCustomers,
     updateCustomer,
     getCustomersForSpecificStore,
+    debtReport,
 };

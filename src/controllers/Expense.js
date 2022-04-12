@@ -59,6 +59,7 @@ async function expenseReport(req, res, next) {
             return {
                 description: expense.description,
                 amount: expense.amount,
+                date: expense.date,
             };
         });
         const report = {

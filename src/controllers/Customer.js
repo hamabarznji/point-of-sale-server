@@ -55,10 +55,78 @@ async function updateCustomer(req, res, next) {
     }
 }
 
+function totalPriceCalculator(price, weight, qty) {
+    if (weight !== 0) {
+        return weight * price;
+    } else if (qty !== 0) {
+        return qty * price;
+    }
+}
+
+async function debtReport(req, res, next) {
+    try {
+        const data = await Customer.debtReport(
+            req.params.from,
+            req.params.to,
+            req.params.storeid
+        );
+
+        const ids = data.map((item) => {
+            return item.customer.id;
+        });
+        const filteredids = ids.filter(
+            (item, index) => ids.indexOf(item) === index
+        );
+        const information = data.map((info) => {
+            return {
+                customer: {
+                    id: info.customer.id,
+                    name: info.customer.name,
+                    address: info.customer.address,
+                },
+                ordeerInfo: info.ordereded_products.map((op) => {
+                    return {
+                        order_id: op.order_id,
+                        totalAmount: totalPriceCalculator(
+                            op.price,
+                            op.weight,
+                            op.qty
+                        ),
+                    };
+                }),
+                totalOrderPrice: info.ordereded_products.reduce((acc, curr) => {
+                    return (
+                        acc +
+                        totalPriceCalculator(curr.price, curr.weight, curr.qty)
+                    );
+                }, 0),
+
+                totalPayment: info.payments.reduce((acc, curr) => {
+                    return acc + curr.amount;
+                }, 0),
+            };
+        });
+
+        const calculatedInformation = information.map((info) => {
+            return {
+                ...information,
+                totalPayment: info.totalPayment,
+                totalOrderPrice: info.totalOrderPrice,
+                debt: info.totalOrderPrice - info.totalPayment,
+            };
+        });
+
+        res.status(200).send(data);
+    } catch (erorr) {
+        res.status(404).send(erorr);
+    }
+}
+
 module.exports = {
     addCustomer,
     getCustomers,
     getCustomer,
     updateCustomer,
     getCustomersForSpecificStore,
+    debtReport,
 };
