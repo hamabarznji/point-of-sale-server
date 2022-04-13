@@ -72,7 +72,7 @@ async function getOrdersByCustomerId(req, res, next) {
 async function getOrders(req, res, next) {
     try {
         const data = await Order.getOrders(req.params.storeid);
-        const orders = data.map((order) => {
+        const orders = data?.map((order) => {
             return {
                 orderId: order.id,
                 date: order.date,
@@ -123,8 +123,15 @@ async function getOrders(req, res, next) {
                 ),
             };
         });
-
-        res.status(200).send(orders);
+        const totalSales = orders.reduce(
+            (sum, order) => sum + order.totalAmount,
+            0
+        );
+        res.status(200).send({
+            orders,
+            totalSales,
+            numberOfOrders: orders.length,
+        });
     } catch (erorr) {
         res.status(404).send(erorr);
     }

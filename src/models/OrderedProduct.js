@@ -33,7 +33,7 @@ const OrderedProduct = sequelize.define(
             type: Sequelize.INTEGER(10),
         },
         weight: {
-            type: Sequelize.INTEGER(10),
+            type: Sequelize.DOUBLE(),
         },
         price: {
             type: Sequelize.DOUBLE(),

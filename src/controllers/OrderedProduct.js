@@ -1,6 +1,6 @@
 const OrderedProduct = require("../services/OrderedProduct");
 const Order = require("../services/Order");
-const Payment = require("../models/Payment");
+const Payment = require("../services/Payment");
 const Customer = require("../models/Customer");
 const TransfareedProduct = require("../services/TransfareedProduct");
 const Store = require("../models/Store");
@@ -115,14 +115,10 @@ async function addOrderedProduct(req, res, next) {
             orderedProductsInfo
         );
 
-        await Payment.addPayment({
-            order_id: id,
-            ...paymentInfo,
-        });
-
         const x = await TransfareedProduct.updateOrderedTransfarredProducts(
             orderedProductsInfo
         );
+        await Payment.addPayment(paymentInfo);
         await Order.res.status(200).json(orderedProducts);
     } catch (err) {
         return err.message;

@@ -58,31 +58,10 @@ async function customerReport(req, res, next) {
     try {
         const data = await Customer.customerReport(req.params.id);
         const numberOfOrders = data.length;
-        const customerInfo = {
-            name: data[0].customer.name,
-            address: data[0].customer.address,
-            phone: data[0].customer.id,
-        };
 
-        /*        const orderededProducts = data.map((product) => {
-            return {
-                orderededProducts: product.ordereded_products.map((op) => {
-                    return {
-                        qty: op.qty,
-                        price: op.price,
-                        weight: op.weight,
-                        totalPrice: totalPriceCalculator(
-                            op.price,
-                            op.weight,
-                            op.qty
-                        ),
-                    };
-                }),
-                payments: product.payments,
-            };
-        }); */
         const calculatedDebt = data.map((order) => {
             return {
+                orderId: order.id,
                 total: order.ordereded_products.reduce((acc, product) => {
                     return (
                         acc +
@@ -96,7 +75,7 @@ async function customerReport(req, res, next) {
                 paidAmount: order.payments.reduce((acc, payment) => {
                     return acc + payment.amount;
                 }, 0),
-                debt:
+                dueAmount:
                     order.ordereded_products.reduce((acc, product) => {
                         return (
                             acc +
@@ -114,13 +93,18 @@ async function customerReport(req, res, next) {
         });
 
         const totalDebtsAmount = calculatedDebt.reduce((acc, curr) => {
-            return acc + curr.debt;
+            return acc + curr.dueAmount;
         }, 0);
 
-        res.status(200).send({
-            debtsInfo: calculatedDebt,
+        const customerInfo = {
+            name: data[0].customer.name,
+            address: data[0].customer.address,
+            phone: data[0].customer.id,
             totalDebtsAmount,
             numberOfOrders,
+        };
+        res.status(200).send({
+            debtsInfo: calculatedDebt,
             customerInfo,
         });
     } catch (erorr) {
