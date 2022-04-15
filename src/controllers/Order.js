@@ -1,6 +1,5 @@
-const { RFC_2822 } = require("moment");
 const Order = require("../services/Order");
-
+const { totalPriceCalculator } = require("../helper/reuseableFuncctions");
 async function addOrder(req, res, next) {
     try {
         const order = await Order.addOrder(req.body);
@@ -8,14 +7,6 @@ async function addOrder(req, res, next) {
         res.status(200).send(order);
     } catch (erorr) {
         res.status(404).send(erorr);
-    }
-}
-
-function totalPriceCalculator(price, weight, qty) {
-    if (weight !== 0) {
-        return weight * price;
-    } else if (qty !== 0) {
-        return qty * price;
     }
 }
 

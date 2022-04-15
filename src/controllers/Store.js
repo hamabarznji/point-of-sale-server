@@ -1,4 +1,5 @@
 const Store = require("../services/Store");
+const { totalPriceCalculator } = require("../helper/reuseableFuncctions");
 
 async function addStore(req, res, next) {
     try {
@@ -7,13 +8,6 @@ async function addStore(req, res, next) {
         res.status(200).send(store);
     } catch (erorr) {
         res.status(404).send(erorr);
-    }
-}
-function totalPriceCalculator(price, weight, qty) {
-    if (weight !== 0) {
-        return weight * price;
-    } else if (qty !== 0) {
-        return qty * price;
     }
 }
 

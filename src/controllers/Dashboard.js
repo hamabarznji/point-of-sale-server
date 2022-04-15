@@ -1,12 +1,6 @@
 const Dashboard = require("../services/Dashboard");
+const { totalPriceCalculator } = require("../helper/reuseableFuncctions");
 
-function totalPriceCalculator(price, weight, qty) {
-    if (weight !== 0) {
-        return weight * price;
-    } else if (qty !== 0) {
-        return qty * price;
-    }
-}
 async function dashboardReport(req, res, next) {
     try {
         const data = await Dashboard.dashboardReport(req.params.storeid);

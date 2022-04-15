@@ -4,6 +4,8 @@ const Payment = require("../services/Payment");
 const Customer = require("../models/Customer");
 const TransfareedProduct = require("../services/TransfareedProduct");
 const Store = require("../models/Store");
+const { totalPriceCalculator } = require("../helper/reuseableFuncctions");
+
 async function getOrderedProduct(id) {
     try {
         return await OrderedProduct.getOrderedProduct(id);
@@ -19,13 +21,6 @@ async function getAll(req, res, next) {
         res.status(200).json(orderedProducts);
     } catch (err) {
         next(err);
-    }
-}
-function totalPriceCalculator(price, weight, qty) {
-    if (weight !== 0) {
-        return weight * price;
-    } else if (qty !== 0) {
-        return qty * price;
     }
 }
 
