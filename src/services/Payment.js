@@ -15,6 +15,16 @@ async function getPayment(id) {
         return err.message;
     }
 }
+async function getPaymentsbyId(id) {
+    try {
+        return await Payment.findAll({
+            include: { all: true },
+            where: { order_id: id },
+        });
+    } catch (err) {
+        return err.message;
+    }
+}
 
 async function getPayments() {
     try {
@@ -39,4 +49,5 @@ module.exports = {
     getPayment,
     getPayments,
     updatePayment,
+    getPaymentsbyId,
 };

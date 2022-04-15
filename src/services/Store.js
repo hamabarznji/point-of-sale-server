@@ -51,11 +51,23 @@ async function storeReport(fromDate, toDate, id) {
         return err.message;
     }
 }
-
+async function storeReportById(id) {
+    try {
+        return await Store.findAll({
+            include: { all: true },
+            where: {
+                id: id,
+            },
+        });
+    } catch (err) {
+        return err.message;
+    }
+}
 module.exports = {
     addStore,
     getStores,
     getStore,
     updateStore,
     storeReport,
+    storeReportById,
 };

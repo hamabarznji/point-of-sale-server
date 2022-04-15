@@ -50,13 +50,12 @@ async function getTransfareedProduct(id) {
     }
 }
 
-async function getAllTransfareedProductsWithAssociatedTables(store_id) {
+async function getAllTransfareedProductsWithAssociatedTables() {
     try {
         //get the store name from Store and Product name from Prodcut
         return await TransfareedProduct.findAll({
             include: { all: true },
             where: {
-                store_id: store_id,
                 [Op.or]: {
                     qty: {
                         [Sequelize.Op.gt]: 0,
@@ -121,7 +120,6 @@ async function updateOrderedTransfarredProducts(orderedProductsInfo) {
 }
 
 async function transfarredProductsReport(fromDate, toDate, storeid) {
-    console.log(fromDate, toDate, storeid);
     try {
         return await TransfareedProduct.findAll({
             include: { all: true },
@@ -129,6 +127,27 @@ async function transfarredProductsReport(fromDate, toDate, storeid) {
                 store_id: storeid,
                 date: {
                     [Sequelize.Op.between]: [fromDate, toDate],
+                },
+            },
+        });
+    } catch (err) {
+        return err.message;
+    }
+}
+
+async function getAllTransfareedProducts(id) {
+    try {
+        return await TransfareedProduct.findAll({
+            include: { all: true },
+            where: {
+                store_id: id,
+                [Op.or]: {
+                    qty: {
+                        [Sequelize.Op.gt]: 0,
+                    },
+                    weight: {
+                        [Sequelize.Op.gt]: 0,
+                    },
                 },
             },
         });
@@ -146,4 +165,5 @@ module.exports = {
     getAllTransfareedProductsWithAssociatedTables,
     updateOrderedTransfarredProducts,
     transfarredProductsReport,
+    getAllTransfareedProducts,
 };

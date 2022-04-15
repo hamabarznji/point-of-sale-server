@@ -32,11 +32,11 @@ async function dashboardReport(req, res, next) {
         const sales = orders.reduce((acc, product) => {
             return (
                 acc +
-                product.ordereded_products.reduce((acc, product) => {
+                product.ordereded_products.reduce((accc, productt) => {
                     return (
-                        acc +
+                        accc +
                         totalPriceCalculator(
-                            product.price,
+                            productt.price,
                             product.weight,
                             product.qty
                         )

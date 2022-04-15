@@ -4,6 +4,7 @@ const Payment = require("../services/Payment");
 const Customer = require("../models/Customer");
 const TransfareedProduct = require("../services/TransfareedProduct");
 const Store = require("../models/Store");
+const Product = require("../models/Product");
 const { totalPriceCalculator } = require("../helper/reuseableFuncctions");
 
 async function getOrderedProduct(id) {
@@ -14,7 +15,6 @@ async function getOrderedProduct(id) {
     }
 }
 
-//getAll
 async function getAll(req, res, next) {
     try {
         const orderedProducts = await OrderedProduct.getAll();
@@ -127,6 +127,87 @@ async function updateOrderedProduct(req, res, next) {
         return err.message;
     }
 }
+async function getOrderedProductsbyId(req, res, next) {
+    try {
+        const data = await OrderedProduct.getOrderedProductsbyId(req.params.id);
+        const orderInfo = {
+            orderId: data[0].order_id,
+            customerPhone: data[0].order_.customer_phone,
+            date: data[0].order_.date,
+            userId: data[0].order_.user_id,
+            storeId: data[0].order_.store_id,
+        };
+        const arrayOfProductsId = data.map((productId) => {
+            return productId.Transfareed_Product.product_id;
+        });
+        const payments = await Payment.getPaymentsbyId(req.params.id).then(
+            (payments) => {
+                return payments.map((p) => {
+                    return {
+                        id: p.id,
+                        amount: p.amount,
+                        date: p.paid_date,
+                    };
+                });
+            }
+        );
+
+        const foundedProducts = await Product.findAll({
+            where: { id: arrayOfProductsId },
+        }).then((products) => {
+            return products.map((product) => {
+                return {
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    color: product.color,
+                };
+            });
+        });
+
+        const orderedProducts = data.map((product) => {
+            return {
+                orderId: product.order_id,
+                name: foundedProducts.find(
+                    (p) => p.id == product.Transfareed_Product.product_id
+                ).name,
+                color: foundedProducts.find(
+                    (p) => p.id == product.Transfareed_Product.product_id
+                ).color,
+                qty: product.qty,
+                weight: product.weight,
+                price: product.price,
+                totalAmount: totalPriceCalculator(
+                    product.price,
+                    product.weight,
+                    product.qty
+                ),
+            };
+        });
+        const dueAmount =
+            orderedProducts.reduce((acc, curr) => acc + curr.totalAmount, 0) -
+            payments.reduce((acc, curr) => {
+                return acc + curr.amount;
+            }, 0);
+
+        const calculatedInformation = {
+            orderedProducts,
+            payments,
+            totalAmount: orderedProducts.reduce(
+                (acc, curr) => acc + curr.totalAmount,
+                0
+            ),
+            totalPayments: payments.reduce((acc, curr) => {
+                return acc + curr.amount;
+            }, 0),
+            dueAmount,
+        };
+
+        res.status(200).send(calculatedInformation);
+    } catch (err) {
+        return err.message;
+    }
+}
 
 module.exports = {
     getOrderedProduct,
@@ -135,4 +216,5 @@ module.exports = {
     getAll,
     updateOrderedProduct,
     getOrderedproductsbyOrderId,
+    getOrderedProductsbyId,
 };

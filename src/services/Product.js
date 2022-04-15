@@ -24,7 +24,6 @@ async function getProducts() {
     }
 }
 async function getProduct(id) {
-    console.log(id);
     try {
         return await Product.findOne({
             include: { all: true },

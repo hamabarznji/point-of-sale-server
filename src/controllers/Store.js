@@ -1,4 +1,5 @@
 const Store = require("../services/Store");
+const TransfareedProduct = require("../services/TransfareedProduct");
 const { totalPriceCalculator } = require("../helper/reuseableFuncctions");
 
 async function addStore(req, res, next) {
@@ -67,6 +68,29 @@ async function storeReport(req, res, next) {
         res.status(404).send(erorr);
     }
 }
+async function storeReportById(req, res, next) {
+    try {
+        const store = await TransfareedProduct.getAllTransfareedProducts(
+            req.params.id
+        );
+        const AllTransfareedProducts = store.map((transfareedProduct) => {
+            return {
+                id: transfareedProduct.id,
+                store_id: transfareedProduct.store_id,
+                product_id: transfareedProduct.product_id,
+                qty: transfareedProduct.qty,
+                weight: transfareedProduct.weight,
+                color: transfareedProduct.product.color,
+                date: transfareedProduct.date,
+                storeName: transfareedProduct.store.name,
+                productName: transfareedProduct.product.name,
+            };
+        });
+        res.status(200).send(AllTransfareedProducts);
+    } catch (erorr) {
+        res.status(404).send(erorr);
+    }
+}
 
 module.exports = {
     addStore,
@@ -74,4 +98,5 @@ module.exports = {
     getStore,
     updateStore,
     storeReport,
+    storeReportById,
 };

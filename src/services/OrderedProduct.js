@@ -68,6 +68,17 @@ async function report() {
     }
 }
 
+async function getOrderedProductsbyId(id) {
+    try {
+        return await OrderedProduct.findAll({
+            where: { order_id: id },
+            include: { all: true },
+        });
+    } catch (err) {
+        return err.message;
+    }
+}
+
 module.exports = {
     getOrderedProducts,
     getOrderedProduct,
@@ -76,4 +87,5 @@ module.exports = {
     getAll,
     getOrderedproductsbyOrderId,
     report,
+    getOrderedProductsbyId,
 };

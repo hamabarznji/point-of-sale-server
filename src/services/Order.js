@@ -30,7 +30,10 @@ async function getOrdersByCustomerId(id) {
 }
 async function getOrder(id) {
     try {
-        return await Order.findOne({ where: { id: id } });
+        return await Order.findOne({
+            where: { id: id },
+            include: { all: true },
+        });
     } catch (err) {
         return err.message;
     }

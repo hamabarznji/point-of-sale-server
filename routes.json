@@ -46,7 +46,8 @@
         "getStores": "/stores",
         "getStore": "/stores/:id",
         "updateStore": "/stores/:id",
-        "reportStore": "/stores/:id/reports/:from/:to"
+        "reportStore": "/stores/:id/reports/:from/:to",
+        "storeReportById": "/reports/stores/:id"
     },
     "expense": {
         "get": {
@@ -85,10 +86,10 @@
         "getOrderedProduct": "/orderedproducts/:id",
         "addOrderedProduct": "/orderedproducts",
         "updateOrderedProduct": "/orderedproducts/:id",
-        "getOrderedproductsbyOrderId": "/orderedproducts/orders/:orderid"
+        "getOrderedproductsbyOrderId": "/orderedproducts/orders/:id"
     },
     "TransfareedProduct": {
-        "getTransfareedProducts": "/transfareedproducts/stores/:storeid",
+        "getTransfareedProducts": "/transfareedproducts",
         "getTransfareedProduct": "/transfareedproducts/:id",
         "addTransfareedproduct": "/transfareedproducts",
         "updateTransfareedProduct": "/transfareedproducts/:id",
