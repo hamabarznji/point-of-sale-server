@@ -71,7 +71,7 @@
             "getSupplier": "/suppliers/:id",
             "getSuppliers": "/suppliers"
         },
-        "addSupplier": "/suppliers/",
+        "addSupplier": "/suppliers",
         "updateSupplier": "/suppliers/:id"
     },
     "order": {
