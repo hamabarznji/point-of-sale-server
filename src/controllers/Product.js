@@ -81,6 +81,11 @@ async function getProducts(req, res, next) {
                 color: product.color,
                 weight: product.weight,
                 date: product.date,
+                totalPrice: totalPriceCalculator(
+                    product.price,
+                    product.weight,
+                    product.qty
+                ),
             };
         });
 
@@ -106,7 +111,7 @@ async function productReport(req, res, next) {
             req.params.to
         );
 
-        productInfo = {
+        const productInfo = {
             productInfo: products.map((product) => {
                 return {
                     name: product.name,
@@ -154,6 +159,7 @@ async function getProductsNotifications(req, res, next) {
                         qty: product.qty,
                         color: product.color,
                         weight: product.weight,
+                        place: "warehouse",
                     };
                 });
             }

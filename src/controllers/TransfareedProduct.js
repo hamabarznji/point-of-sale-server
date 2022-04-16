@@ -127,13 +127,13 @@ async function getTransfareedProductsNotifications(req, res, next) {
             await TransfareedProduct.getTransfareedProductsNotifications(
                 req.params.id
             );
-
         const products = data.map((product) => {
             return {
                 qty: product.qty,
                 weight: product.weight,
                 name: product.product.name,
                 color: product.product.color,
+                place: "store",
             };
         });
 
