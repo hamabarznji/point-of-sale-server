@@ -155,6 +155,44 @@ async function getAllTransfareedProducts(id) {
         return err.message;
     }
 }
+async function getTransfareedProductsNotifications(id) {
+    try {
+        return await TransfareedProduct.findAll({
+            include: { all: true },
+            where: {
+                store_id: id,
+                [Op.or]: [
+                    {
+                        [Op.and]: [
+                            {
+                                qty: {
+                                    [Sequelize.Op.lte]: 25,
+                                },
+                                weight: {
+                                    [Sequelize.Op.eq]: 0,
+                                },
+                            },
+                        ],
+                    },
+                    {
+                        [Op.and]: [
+                            {
+                                qty: {
+                                    [Sequelize.Op.eq]: 0,
+                                },
+                                weight: {
+                                    [Sequelize.Op.lte]: 100,
+                                },
+                            },
+                        ],
+                    },
+                ],
+            },
+        });
+    } catch (err) {
+        return err.message;
+    }
+}
 
 module.exports = {
     addTransfareedProductn,
@@ -166,4 +204,5 @@ module.exports = {
     updateOrderedTransfarredProducts,
     transfarredProductsReport,
     getAllTransfareedProducts,
+    getTransfareedProductsNotifications,
 };

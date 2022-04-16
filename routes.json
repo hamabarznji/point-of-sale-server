@@ -19,6 +19,7 @@
             "getProducts": "/products",
             "getProduct": "/products/:id"
         },
+        "getProductsNotifications": "/productss",
         "addProduct": "/prodcuts",
         "updateProduct": "/products/:id",
         "productsreport": "/products/reports/:from/:to"
@@ -93,7 +94,8 @@
         "getTransfareedProduct": "/transfareedproducts/:id",
         "addTransfareedproduct": "/transfareedproducts",
         "updateTransfareedProduct": "/transfareedproducts/:id",
-        "reportTransfareedProduct": "/transfareedproducts/reports/:from/:to/stores/:storeid"
+        "reportTransfareedProduct": "/transfareedproducts/reports/:from/:to/stores/:storeid",
+        "getTransfareedProductsNotifications": "/transfareedproducts/stores/:id/notifications"
     },
     "Payment": {
         "getPayments": "/payments",

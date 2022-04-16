@@ -49,10 +49,48 @@ async function productsReport(fromDate, toDate) {
     }
 }
 
+async function getProductsNotifications() {
+    try {
+        return await Product.findAll({
+            where: {
+                [Op.or]: [
+                    {
+                        [Op.and]: [
+                            {
+                                qty: {
+                                    [Sequelize.Op.lte]: 150,
+                                },
+                                weight: {
+                                    [Sequelize.Op.eq]: 0,
+                                },
+                            },
+                        ],
+                    },
+                    {
+                        [Op.and]: [
+                            {
+                                qty: {
+                                    [Sequelize.Op.eq]: 0,
+                                },
+                                weight: {
+                                    [Sequelize.Op.lte]: 300,
+                                },
+                            },
+                        ],
+                    },
+                ],
+            },
+        });
+    } catch (err) {
+        return err.message;
+    }
+}
+
 module.exports = {
     addProduct,
     getProducts,
     updateProduct,
     getProduct,
     productsReport,
+    getProductsNotifications,
 };

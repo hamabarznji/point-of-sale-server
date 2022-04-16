@@ -121,6 +121,27 @@ async function transfarredProductsReport(req, res, next) {
         res.status(404).send(erorr);
     }
 }
+async function getTransfareedProductsNotifications(req, res, next) {
+    try {
+        const data =
+            await TransfareedProduct.getTransfareedProductsNotifications(
+                req.params.id
+            );
+
+        const products = data.map((product) => {
+            return {
+                qty: product.qty,
+                weight: product.weight,
+                name: product.product.name,
+                color: product.product.color,
+            };
+        });
+
+        res.status(200).send({ data: products, badgeContent: data.length });
+    } catch (erorr) {
+        res.status(404).send(erorr);
+    }
+}
 module.exports = {
     addTransfareedProduct,
     updateTransfareedProduct,
@@ -128,4 +149,5 @@ module.exports = {
     getTransfareedProduct,
     getAllTransfareedProductsWithAssociatedTables,
     transfarredProductsReport,
+    getTransfareedProductsNotifications,
 };

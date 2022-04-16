@@ -27,8 +27,6 @@ async function addStore(store) {
 }
 
 async function updateStore(store) {
-    console.log(store);
-
     try {
         return await Store.update(store, { where: { id: store.id } });
     } catch (err) {
@@ -63,6 +61,23 @@ async function storeReportById(id) {
         return err.message;
     }
 }
+
+async function transfarredProductsNotifications(id) {
+    try {
+        return await TransfareedProduct.findAll({
+            include: { all: true },
+            where: {
+                store_id: id,
+                date: {
+                    [Sequelize.Op.between]: [fromDate, toDate],
+                },
+            },
+        });
+    } catch (err) {
+        return err.message;
+    }
+}
+
 module.exports = {
     addStore,
     getStores,

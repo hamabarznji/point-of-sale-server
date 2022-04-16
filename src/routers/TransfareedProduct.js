@@ -11,6 +11,11 @@ router.post(
 );
 
 router.get(
+    routes.TransfareedProduct.getTransfareedProductsNotifications,
+    verifyAuth,
+    TransfareedProduct.getTransfareedProductsNotifications
+);
+router.get(
     routes.TransfareedProduct.getTransfareedProducts,
     verifyAuth,
     TransfareedProduct.getAllTransfareedProductsWithAssociatedTables

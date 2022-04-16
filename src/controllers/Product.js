@@ -143,11 +143,31 @@ async function productReport(req, res, next) {
         res.status(404).send(err);
     }
 }
-
+async function getProductsNotifications(req, res, next) {
+    try {
+        const data = await Product.getProductsNotifications().then(
+            (products) => {
+                return products.map((product) => {
+                    return {
+                        id: product.id,
+                        name: product.name,
+                        qty: product.qty,
+                        color: product.color,
+                        weight: product.weight,
+                    };
+                });
+            }
+        );
+        res.status(200).send({ data, badgeContent: data.length });
+    } catch (erorr) {
+        res.status(404).send(erorr);
+    }
+}
 module.exports = {
     addProduct,
     getProducts,
     updateProduct,
     getProduct,
     productReport,
+    getProductsNotifications,
 };
