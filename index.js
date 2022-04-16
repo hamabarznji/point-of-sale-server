@@ -20,8 +20,13 @@ const UserRouter = require("./src/routers/user");
 const TransfareedProductRouter = require("./src/routers/TransfareedProduct");
 const DashboardRouter = require("./src/routers/Dashboard");
 const PaymentRouter = require("./src/routers/Payment");
+
 app.use(express.json());
 app.use(cors());
+
+app.get("/auth", (req, res) => {
+    res.send("Hello World");
+});
 
 app.use(CategoryRouter);
 app.use(CustomerRouter);

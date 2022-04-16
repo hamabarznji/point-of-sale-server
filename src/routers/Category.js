@@ -9,5 +9,6 @@ router.get(
     verifyAuth,
     Category.getCategories
 );
+router.post(routes.category.addCategory, verifyAuth, Category.addCategory);
 
 module.exports = router;

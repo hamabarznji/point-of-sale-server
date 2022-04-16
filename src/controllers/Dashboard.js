@@ -29,21 +29,23 @@ async function dashboardReport(req, res, next) {
             };
         });
 
-        const sales = orders.reduce((acc, product) => {
-            return (
-                acc +
-                product.ordereded_products.reduce((accc, productt) => {
+        const sales = orders
+            .map((product) => {
+                return product.ordereded_products.reduce((acc, product) => {
                     return (
-                        accc +
+                        acc +
                         totalPriceCalculator(
-                            productt.price,
+                            product.price,
                             product.weight,
                             product.qty
                         )
                     );
-                }, 0)
-            );
-        }, 0);
+                }, 0);
+            })
+            .reduce((acc, sales) => {
+                return acc + sales;
+            }, 0);
+
         const totalDebtsAmount = debts.reduce((acc, debt) => {
             return acc + debt.debt;
         }, 0);
