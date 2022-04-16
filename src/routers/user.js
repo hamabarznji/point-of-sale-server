@@ -8,7 +8,7 @@ router.post(routes.user.login.loginUser, User.login);
 router.post(routes.user.addUser, verifyAuth, User.addUser);
 router.get(routes.user.getUser, verifyAuth, User.getUser);
 router.get(routes.user.getUsers, verifyAuth, User.getUsers);
-router.get(routes.user.delete.deleteUser, verifyAuth, User.deleteUser);
+router.delete(routes.user.deleteUser, verifyAuth, User.deleteUser);
 router.put(routes.user.updateUser, verifyAuth, User.updateUser);
 
 module.exports = router;

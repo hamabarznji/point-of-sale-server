@@ -4,9 +4,7 @@
         "getUsers": "/users",
         "addUser": "/users",
         "updateUser": "/users/:id",
-        "delete": {
-            "deleteUser": "/users/:id"
-        },
+        "deleteUser": "/users/:id",
         "update": {
             "updateUser": "/users/:id"
         },

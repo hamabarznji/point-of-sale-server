@@ -101,7 +101,7 @@ async function addUser(req, res, next) {
 async function deleteUser(req, res, next) {
     try {
         const data = await User.deleteUser(req.params.id);
-        res.status(200).send(data);
+        res.status(202).send(data);
     } catch (erorr) {
         res.status(404).send(erorr);
     }
