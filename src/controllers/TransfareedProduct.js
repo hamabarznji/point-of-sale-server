@@ -69,7 +69,10 @@ async function getTransfareedProduct(req, res, next) {
 async function getAllTransfareedProductsWithAssociatedTables(req, res, next) {
     try {
         const transfareedProducts =
-            await TransfareedProduct.getAllTransfareedProductsWithAssociatedTables();
+            await TransfareedProduct.getAllTransfareedProductsWithAssociatedTables(
+                req.params.id
+            );
+        console.log(req.params.id, "///////////////////////////////////");
         const AllTransfareedProducts = transfareedProducts.map(
             (transfareedProduct) => {
                 return {

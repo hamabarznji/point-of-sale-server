@@ -50,22 +50,38 @@ async function getTransfareedProduct(id) {
     }
 }
 
-async function getAllTransfareedProductsWithAssociatedTables() {
+async function getAllTransfareedProductsWithAssociatedTables(id) {
     try {
-        //get the store name from Store and Product name from Prodcut
-        return await TransfareedProduct.findAll({
-            include: { all: true },
-            where: {
-                [Op.or]: {
-                    qty: {
-                        [Sequelize.Op.gt]: 0,
-                    },
-                    weight: {
-                        [Sequelize.Op.gt]: 0,
+        if (id) {
+            return await TransfareedProduct.findAll({
+                include: { all: true },
+                where: {
+                    store_id: id,
+                    [Op.or]: {
+                        qty: {
+                            [Sequelize.Op.gt]: 0,
+                        },
+                        weight: {
+                            [Sequelize.Op.gt]: 0,
+                        },
                     },
                 },
-            },
-        });
+            });
+        } else {
+            return await TransfareedProduct.findAll({
+                include: { all: true },
+                where: {
+                    [Op.or]: {
+                        qty: {
+                            [Sequelize.Op.gt]: 0,
+                        },
+                        weight: {
+                            [Sequelize.Op.gt]: 0,
+                        },
+                    },
+                },
+            });
+        }
     } catch (err) {
         return err.message;
     }

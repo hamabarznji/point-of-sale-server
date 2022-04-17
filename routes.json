@@ -89,6 +89,7 @@
     },
     "TransfareedProduct": {
         "getTransfareedProducts": "/transfareedproducts",
+        "getTransfareedProductsBystoreId": "/transfareedproducts/stores/:id",
         "getTransfareedProduct": "/transfareedproducts/:id",
         "addTransfareedproduct": "/transfareedproducts",
         "updateTransfareedProduct": "/transfareedproducts/:id",
