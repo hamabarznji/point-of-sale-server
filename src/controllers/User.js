@@ -71,18 +71,7 @@ async function getUser(req, res, next) {
     }
 }
 
-/* async function getUser(req, res, next) {
-    try {
-        const data = await User.getUser(req.params.id);
-
-        res.status(200).send(data);
-    } catch (erorr) {
-        res.status(erorr);
-    }
-} */
-
 async function addUser(req, res, next) {
-    console.log(req.body);
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
     try {
@@ -107,8 +96,17 @@ async function deleteUser(req, res, next) {
     }
 }
 async function updateUser(req, res, next) {
+    const salt = await bcrypt.genSalt(10);
+
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
     try {
-        const data = await User.updateUser(user);
+        const data = await User.updateUser({
+            id: req.body.id,
+            username: req.body.username,
+            password: hashedPassword,
+            role: req.body.role,
+            store_id: req.body.store_id,
+        });
         res.status(200).send(data);
     } catch (erorr) {
         res.status(404).send(erorr);

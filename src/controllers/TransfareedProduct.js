@@ -1,5 +1,6 @@
 const TransfareedProduct = require("../services/TransfareedProduct");
 const Product = require("../services/Product");
+const { totalPriceCalculator } = require("../helper/reuseableFuncctions");
 async function addTransfareedProduct(req, res, next) {
     try {
         const { product_id, weight, qty } = req.body;
@@ -81,6 +82,11 @@ async function getAllTransfareedProductsWithAssociatedTables(req, res, next) {
                     date: transfareedProduct.date,
                     storeName: transfareedProduct.store.name,
                     productName: transfareedProduct.product.name,
+                    totalPriceAmount: totalPriceCalculator(
+                        transfareedProduct.price,
+                        transfareedProduct.weight,
+                        transfareedProduct.qty
+                    ),
                 };
             }
         );

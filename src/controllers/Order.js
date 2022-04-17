@@ -54,6 +54,7 @@ async function getOrdersByCustomerId(req, res, next) {
                 ),
             };
         });
+
         res.status(200).send(orders);
     } catch (erorr) {
         return erorr.message;
@@ -112,12 +113,28 @@ async function getOrders(req, res, next) {
                     (sum, payment) => sum + payment.amount,
                     0
                 ),
+                dueAmount:
+                    order.ordereded_products.reduce((sum, orderedProduct) => {
+                        return (
+                            sum +
+                            totalPriceCalculator(
+                                orderedProduct.price,
+                                orderedProduct.weight,
+                                orderedProduct.qty
+                            )
+                        );
+                    }, 0) -
+                    order.payments.reduce(
+                        (sum, payment) => sum + payment.amount,
+                        0
+                    ),
             };
         });
         const totalSales = orders.reduce(
             (sum, order) => sum + order.totalAmount,
             0
         );
+
         res.status(200).send({
             orders,
             totalSales,

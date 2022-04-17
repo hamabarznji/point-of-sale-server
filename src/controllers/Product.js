@@ -4,7 +4,6 @@ const { totalPriceCalculator } = require("../helper/reuseableFuncctions");
 async function addProduct(req, res, next) {
     try {
         const product = await Product.addProduct(req.body);
-        console.log(product);
         res.status(200).send(product);
     } catch (erorr) {
         res.status(404).send(erorr);
