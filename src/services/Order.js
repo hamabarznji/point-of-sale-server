@@ -9,10 +9,16 @@ async function addOrder(order) {
 }
 async function getOrders(storeid) {
     try {
-        return await Order.findAll({
-            include: { all: true },
-            where: { store_id: storeid },
-        });
+        if (storeid == 0) {
+            return await Order.findAll({
+                include: { all: true },
+            });
+        } else {
+            return await Order.findAll({
+                include: { all: true },
+                where: { store_id: storeid },
+            });
+        }
     } catch (err) {
         return err.message;
     }

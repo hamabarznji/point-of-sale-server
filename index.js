@@ -24,8 +24,17 @@ const PaymentRouter = require("./src/routers/Payment");
 app.use(express.json());
 app.use(cors());
 
-app.get("/auth", (req, res) => {
-    res.send("Hello World");
+app.get("/login/auth", (req, res) => {
+    const { authorization } = req.headers;
+    if (!authorization) return res.status(401).send("Unauthorized");
+    const token = authorization.split(" ")[1];
+    try {
+        jwt.verify(token, process.env.SECRETKEY);
+        res.status(200).send(true);
+        next();
+    } catch (error) {
+        res.status(401).send(false);  
+    }
 });
 
 app.use(CategoryRouter);

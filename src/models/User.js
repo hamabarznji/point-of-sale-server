@@ -32,7 +32,7 @@ const User = sequelize.define(
         },
         store_id: {
             type: Sequelize.INTEGER(2),
-            allowNull: false,
+            allowNull: true,
             references: {
                 model: Store,
             },
