@@ -16,10 +16,16 @@ async function addCustomer(customer) {
 
 async function getCustomers(storeid) {
     try {
-        return await Customer.findAll({
-            include: { all: true },
-            where: { store_id: storeid },
-        });
+        if (storeid == 0) {
+            return await Customer.findAll({
+                include: { all: true },
+            });
+        } else {
+            return await Customer.findAll({
+                include: { all: true },
+                where: { store_id: storeid },
+            });
+        }
     } catch (err) {
         return err.message;
     }

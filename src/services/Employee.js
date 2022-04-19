@@ -2,12 +2,18 @@ const Employee = require("../models/Employee");
 
 async function getEmployees(storeid) {
     try {
-        return await Employee.findAll({
-            include: { all: true },
-            where: {
-                store_id: storeid,
-            },
-        });
+        if (storeid == 0) {
+            return await Employee.findAll({
+                include: { all: true },
+            });
+        } else {
+            return await Employee.findAll({
+                include: { all: true },
+                where: {
+                    store_id: storeid,
+                },
+            });
+        }
     } catch (err) {
         return err.message;
     }
@@ -29,7 +35,6 @@ async function addEmployee(employee) {
     }
 }
 async function updateEmployee(employee) {
-    console.log(employee.id);
     try {
         return await Employee.update(employee, { where: { id: employee.id } });
     } catch (err) {

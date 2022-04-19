@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Store = require("../models/Store");
 
 const getUsers = async () => {
     try {
@@ -37,12 +38,5 @@ const updateUser = async (user) => {
         return err.message;
     }
 };
-const deleteUser = async (id) => {
-    try {
-        return await User.destroy({ where: { id: id } });
-    } catch (err) {
-        return err.message;
-    }
-};
 
-module.exports = { getUsers, getUser, addUser, deleteUser, login, updateUser };
+module.exports = { getUsers, getUser, addUser, login, updateUser };

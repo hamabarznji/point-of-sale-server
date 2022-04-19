@@ -2,12 +2,18 @@ const Expense = require("../models/Expense");
 const Sequelize = require("sequelize");
 async function getExpenses(storeid) {
     try {
-        return await Expense.findAll({
-            include: { all: true },
-            where: {
-                store_id: storeid,
-            },
-        });
+        if (storeid == 0) {
+            return await Expense.findAll({
+                include: { all: true },
+            });
+        } else {
+            return await Expense.findAll({
+                include: { all: true },
+                where: {
+                    store_id: storeid,
+                },
+            });
+        }
     } catch (err) {
         return err.message;
     }

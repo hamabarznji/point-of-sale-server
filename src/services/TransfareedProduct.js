@@ -51,12 +51,12 @@ async function getTransfareedProduct(id) {
 }
 
 async function getAllTransfareedProductsWithAssociatedTables(id) {
+    console.log(id, "hereeeeeeeeeeeeeeeeeeeeeeeeeeee");
     try {
-        if (id) {
+        if (id == 0) {
             return await TransfareedProduct.findAll({
                 include: { all: true },
                 where: {
-                    store_id: id,
                     [Op.or]: {
                         qty: {
                             [Sequelize.Op.gt]: 0,
@@ -71,6 +71,8 @@ async function getAllTransfareedProductsWithAssociatedTables(id) {
             return await TransfareedProduct.findAll({
                 include: { all: true },
                 where: {
+                    store_id: id,
+
                     [Op.or]: {
                         qty: {
                             [Sequelize.Op.gt]: 0,
@@ -173,38 +175,72 @@ async function getAllTransfareedProducts(id) {
 }
 async function getTransfareedProductsNotifications(id) {
     try {
-        return await TransfareedProduct.findAll({
-            include: { all: true },
-            where: {
-                store_id: id,
-                [Op.or]: [
-                    {
-                        [Op.and]: [
-                            {
-                                qty: {
-                                    [Sequelize.Op.lte]: 25,
+        if (id == 0) {
+            return await TransfareedProduct.findAll({
+                include: { all: true },
+                where: {
+                    [Op.or]: [
+                        {
+                            [Op.and]: [
+                                {
+                                    qty: {
+                                        [Sequelize.Op.lte]: 25,
+                                    },
+                                    weight: {
+                                        [Sequelize.Op.eq]: 0,
+                                    },
                                 },
-                                weight: {
-                                    [Sequelize.Op.eq]: 0,
+                            ],
+                        },
+                        {
+                            [Op.and]: [
+                                {
+                                    qty: {
+                                        [Sequelize.Op.eq]: 0,
+                                    },
+                                    weight: {
+                                        [Sequelize.Op.lte]: 100,
+                                    },
                                 },
-                            },
-                        ],
-                    },
-                    {
-                        [Op.and]: [
-                            {
-                                qty: {
-                                    [Sequelize.Op.eq]: 0,
+                            ],
+                        },
+                    ],
+                },
+            });
+        } else {
+            return await TransfareedProduct.findAll({
+                include: { all: true },
+                where: {
+                    store_id: id,
+                    [Op.or]: [
+                        {
+                            [Op.and]: [
+                                {
+                                    qty: {
+                                        [Sequelize.Op.lte]: 25,
+                                    },
+                                    weight: {
+                                        [Sequelize.Op.eq]: 0,
+                                    },
                                 },
-                                weight: {
-                                    [Sequelize.Op.lte]: 100,
+                            ],
+                        },
+                        {
+                            [Op.and]: [
+                                {
+                                    qty: {
+                                        [Sequelize.Op.eq]: 0,
+                                    },
+                                    weight: {
+                                        [Sequelize.Op.lte]: 100,
+                                    },
                                 },
-                            },
-                        ],
-                    },
-                ],
-            },
-        });
+                            ],
+                        },
+                    ],
+                },
+            });
+        }
     } catch (err) {
         return err.message;
     }

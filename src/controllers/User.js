@@ -27,24 +27,7 @@ async function login(req, res) {
     }
 }
 
-/* async function getUsers(req, res, next) {
-    try {
-        let token = jwt.decode(req.token);
-        if (token.role !== "owner")
-            return res.status(403).send({
-                error: "You are not authorized to access this resource",
-            });
-        jwt.verify(req.token, process.env.SECRETKEY, async (err) => {
-            if (err)
-                return res.status(403).send({ error: "Please authenticate." })
-
-            const data = await User.getUsers();
-            res.status(200).send({ data });
-        });
-    } catch (erorr) {
-        res.status(erorr);
-    }
-} */ async function getUsers(req, res, next) {
+async function getUsers(req, res, next) {
     try {
         const data = await User.getUsers();
         const users = data.map((user) => {
@@ -52,8 +35,7 @@ async function login(req, res) {
                 id: user.id,
                 username: user.username,
                 role: user.role,
-                storeName: user.store.name,
-                store_id: user.store_id,
+                storeName: user?.store?.name ? user?.store?.name : "default",
             };
         });
         res.status(200).send(users);
@@ -87,14 +69,6 @@ async function addUser(req, res, next) {
     }
 }
 
-async function deleteUser(req, res, next) {
-    try {
-        const data = await User.deleteUser(req.params.id);
-        res.status(202).send(data);
-    } catch (erorr) {
-        res.status(404).send(erorr);
-    }
-}
 async function updateUser(req, res, next) {
     const salt = await bcrypt.genSalt(10);
 
@@ -113,4 +87,4 @@ async function updateUser(req, res, next) {
     }
 }
 
-module.exports = { getUsers, getUser, addUser, deleteUser, login, updateUser };
+module.exports = { getUsers, getUser, addUser, login, updateUser };
