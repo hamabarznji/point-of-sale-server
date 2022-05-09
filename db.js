@@ -1,15 +1,10 @@
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize(
-    process.env.DB,
-    process.env.USER,
-    process.env.PASSWORD,
-    {
-        host: process.env.HOST,
+const sequelize = new Sequelize("point-of-sale", "root", "", {
+    host: "localhost",
 
-        dialect: "mysql",
-        operatorsAlias: false,
-    }
-);
+    dialect: "mysql",
+    operatorsAlias: false,
+});
 
 sequelize
     .authenticate()

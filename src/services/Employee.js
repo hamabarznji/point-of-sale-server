@@ -2,7 +2,7 @@ const Employee = require("../models/Employee");
 
 async function getEmployees(storeid) {
     try {
-        if (storeid == 0) {
+        if (storeid == "null" || storeid == null) {
             return await Employee.findAll({
                 include: { all: true },
             });

@@ -2,7 +2,7 @@ const TransfareedProduct = require("../models/TransfareedProduct");
 const Sequelize = require("sequelize");
 const { Op } = require("sequelize");
 
-async function addTransfareedProductn(transfareedproduct) {
+async function addTransfareedProduct(transfareedproduct) {
     try {
         return await TransfareedProduct.create(transfareedproduct);
     } catch (err) {
@@ -51,9 +51,8 @@ async function getTransfareedProduct(id) {
 }
 
 async function getAllTransfareedProductsWithAssociatedTables(id) {
-    console.log(id, "hereeeeeeeeeeeeeeeeeeeeeeeeeeee");
     try {
-        if (id == 0) {
+        if (id == "null" || id == null) {
             return await TransfareedProduct.findAll({
                 include: { all: true },
                 where: {
@@ -175,7 +174,7 @@ async function getAllTransfareedProducts(id) {
 }
 async function getTransfareedProductsNotifications(id) {
     try {
-        if (id == 0) {
+        if (id == "null" || id == null) {
             return await TransfareedProduct.findAll({
                 include: { all: true },
                 where: {
@@ -247,7 +246,7 @@ async function getTransfareedProductsNotifications(id) {
 }
 
 module.exports = {
-    addTransfareedProductn,
+    addTransfareedProduct,
     updateTransfareedProduct,
     deleteTransfareedProduct,
     getTransfareedProducts,

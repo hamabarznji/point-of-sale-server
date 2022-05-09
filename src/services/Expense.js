@@ -2,7 +2,7 @@ const Expense = require("../models/Expense");
 const Sequelize = require("sequelize");
 async function getExpenses(storeid) {
     try {
-        if (storeid == 0) {
+        if (storeid == "null" || storeid == null) {
             return await Expense.findAll({
                 include: { all: true },
             });

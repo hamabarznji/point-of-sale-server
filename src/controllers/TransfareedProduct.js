@@ -2,6 +2,7 @@ const TransfareedProduct = require("../services/TransfareedProduct");
 const Product = require("../services/Product");
 const { totalPriceCalculator } = require("../helper/reuseableFuncctions");
 async function addTransfareedProduct(req, res, next) {
+    console.log(req.body);
     try {
         const { product_id, weight, qty } = req.body;
         if (req.body.weight > 0 && req.body.qty > 0) {
@@ -21,7 +22,7 @@ async function addTransfareedProduct(req, res, next) {
         } */
 
         const transfareedProduct =
-            await TransfareedProduct.addTransfareedProductn(req.body);
+            await TransfareedProduct.addTransfareedProduct(req.body);
 
         await Product.updateProduct({
             id: product_id,
@@ -72,7 +73,6 @@ async function getAllTransfareedProductsWithAssociatedTables(req, res, next) {
             await TransfareedProduct.getAllTransfareedProductsWithAssociatedTables(
                 req.params.id
             );
-        console.log(req.params.id, "///////////////////////////////////");
         const AllTransfareedProducts = transfareedProducts.map(
             (transfareedProduct) => {
                 return {

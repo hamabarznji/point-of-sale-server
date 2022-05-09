@@ -1,22 +1,21 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
-
 const express = require("express");
 var cors = require("cors");
-const SwaggerRouter = require("./src/routers/swagger");
+const SwaggerRouter = require("./src/routers/Swagger");
 const app = express();
 
 //routers
-const CategoryRouter = require("./src/routers/category");
-const CustomerRouter = require("./src/routers/customer");
-const EmployeeRouter = require("./src/routers/employee");
-const ExpenseRouter = require("./src/routers/expense");
-const OrderRouter = require("./src/routers/order");
-const OrderedProductRouter = require("./src/routers/orderedProduct");
-const ProductRouter = require("./src/routers/product");
-const StoreRouter = require("./src/routers/store");
-const SupplierRouter = require("./src/routers/supplier");
-const UserRouter = require("./src/routers/user");
+const CategoryRouter = require("./src/routers/Category");
+const CustomerRouter = require("./src/routers/Customer");
+const EmployeeRouter = require("./src/routers/Employee");
+const ExpenseRouter = require("./src/routers/Expense");
+const OrderRouter = require("./src/routers/Order");
+const OrderedProductRouter = require("./src/routers/OrderedProduct");
+const ProductRouter = require("./src/routers/Product");
+const StoreRouter = require("./src/routers/Store");
+const SupplierRouter = require("./src/routers/Supplier");
+const UserRouter = require("./src/routers/User");
 const TransfareedProductRouter = require("./src/routers/TransfareedProduct");
 const DashboardRouter = require("./src/routers/Dashboard");
 const PaymentRouter = require("./src/routers/Payment");
@@ -29,11 +28,11 @@ app.get("/login/auth", (req, res) => {
     if (!authorization) return res.status(401).send("Unauthorized");
     const token = authorization.split(" ")[1];
     try {
-        jwt.verify(token, process.env.SECRETKEY);
+        jwt.verify(token, "fyp");
         res.status(200).send(true);
         next();
     } catch (error) {
-        res.status(401).send(false);  
+        res.status(401).send(false);
     }
 });
 
@@ -69,6 +68,6 @@ app.use(SwaggerRouter);
     }
 }); */
 
-app.listen(process.env.PORT || 3002, () =>
-    console.log(`Listening on port ${process.env.PORT}`)
-);
+app.listen(3002, () => console.log(`Listening on port 3002`));
+
+////sudo /opt/lampp/lampp start

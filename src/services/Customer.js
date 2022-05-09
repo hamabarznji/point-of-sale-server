@@ -16,7 +16,7 @@ async function addCustomer(customer) {
 
 async function getCustomers(storeid) {
     try {
-        if (storeid == 0) {
+        if (storeid == "null" || storeid == null) {
             return await Customer.findAll({
                 include: { all: true },
             });

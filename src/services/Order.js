@@ -9,7 +9,7 @@ async function addOrder(order) {
 }
 async function getOrders(storeid) {
     try {
-        if (storeid == 0) {
+        if (storeid == "null" || storeid == null) {
             return await Order.findAll({
                 include: { all: true },
             });

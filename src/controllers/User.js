@@ -15,12 +15,14 @@ async function login(req, res) {
                 .send({ error: "Something went wrong! Please try again!" });
         }
         const token = loginAuth(user.id, user.role);
-        res.status(200).send({
+
+        return res.status(200).json({
             id: user.id,
             username: user.username,
             role: user.role,
             store_id: user.store_id,
             token,
+            isAuth: true,
         });
     } catch (erorr) {
         res.status(404).send(erorr, "The User name or password is incorrect!");

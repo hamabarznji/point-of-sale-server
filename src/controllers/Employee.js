@@ -6,7 +6,7 @@ async function addEmployee(req, res, next) {
             id: req.body.id,
             name: req.body.name,
             store_id: req.body.store_id,
-            phone: req.body.address,
+            phone: req.body.phone,
             salary: req.body.salary,
             address: req.body.address,
         });
