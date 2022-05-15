@@ -6,8 +6,8 @@ const TransfareedProduct = require("../services/TransfareedProduct");
 const Sequelize = require("sequelize");
 async function dashboardReport(storeid) {
     try {
-        if (!storeid) {
-            const customers = await Customer.findAll({});
+        if (storeid == null || storeid == "null") {
+            const customers = await Customer.findAll();
             const transfareedProducts =
                 await TransfareedProduct.getAllTransfareedProductsWithAssociatedTables();
             const orders = await Order.findAll({
