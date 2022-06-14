@@ -27,6 +27,11 @@ app.get("/login/auth", (req, res) => {
     const { authorization } = req.headers;
     if (!authorization) return res.status(401).send("Unauthorized");
     const token = authorization.split(" ")[1];
+
+    if (token == null || token == "null") {
+        res.status(200).send(false);
+        return;
+    }
     try {
         jwt.verify(token, "fyp");
         res.status(200).send(true);

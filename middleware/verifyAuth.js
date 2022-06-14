@@ -8,7 +8,9 @@ const verifyToken = async (req, res, next) => {
         jwt.verify(token, "fyp");
         next();
     } catch (error) {
-        res.status(401).send("Unauthorized");
+        res.status(401).send(
+            "Access Denied! You are not allowed to access this api(Unauthorized)."
+        );
     }
 };
 
