@@ -34,7 +34,10 @@ app.get("/login/auth", (req, res) => {
     }
     try {
         jwt.verify(token, "fyp");
-        res.status(200).send(true);
+        const userInfo = jwt.decode(token);
+        const info = { isAuth: true, user: userInfo };
+
+        res.status(200).send(info);
         next();
     } catch (error) {
         res.status(401).send(false);
@@ -55,23 +58,6 @@ app.use(TransfareedProductRouter);
 app.use(PaymentRouter);
 app.use(DashboardRouter);
 app.use(SwaggerRouter);
-
-/* app.get("/auth", async (req, res, next) => {
-    try {
-        try {
-            const verify = jwt.verify(
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IjEiLCJpYXQiOjE2NDg5Mjg5NTR9.XF8e-Uk8YHBGW4tIY54IPcuvYrh-EIlVPEv_1KH9uQA",
-                process.env.SECRETKEY
-            );
-
-            res.send(!!verify);
-        } catch (error) {
-            res.status(401).send("Unauthorized");
-        }
-    } catch (error) {
-        res.status(401).send("Unauthorized");
-    }
-}); */
 
 app.listen(3002, () => console.log(`Listening on port 3002`));
 

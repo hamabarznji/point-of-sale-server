@@ -14,7 +14,7 @@ async function login(req, res) {
                 .status(404)
                 .send({ error: "Something went wrong! Please try again!" });
         }
-        const token = loginAuth(user.id, user.role);
+        const token = loginAuth(user.id, user.role, user.store_id);
 
         return res.status(200).json({
             id: user.id,
