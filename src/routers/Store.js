@@ -5,7 +5,7 @@ const verifyAuth = require("../../middleware/verifyAuth");
 const Store = require("../controllers/Store");
 
 router.get(routes.store.getStores, verifyAuth, Store.getStores);
-router.get(routes.store.reportStore, verifyAuth, Store.storeReport);
+//router.get(routes.store.reportStore, verifyAuth, Store.storeReport);
 router.get(routes.store.storeReportById, verifyAuth, Store.storeReportById);
 router.get(routes.store.getStore, verifyAuth, Store.getStore);
 router.post(routes.store.addStore, verifyAuth, Store.addStore);

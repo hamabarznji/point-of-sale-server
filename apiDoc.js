@@ -5,7 +5,7 @@
      * tags:
      *  name: Login/Authentication
      *  description: When you login you get a token.
-     * /:
+     * /login:
      *  post:
      *      tags: [Login/Authentication]
      *      requestBody:
@@ -24,6 +24,15 @@
      *      responses:
      *          default:
      *              description: This is the default response for it
+     */
+    /**
+     * @swagger
+     * tags:
+     *  name: Login/Authentication
+     * /login/auth:
+     *  get:
+     *      tags: [Login/Authentication]
+   
      */
 }
 
@@ -66,16 +75,6 @@
      *
      * /users/{id}:
      *  put:
-     *      tags: [Users]
-     *
-     */
-    /**
-     * @swagger
-     * tags:
-     *  name: Users
-     *
-     * /users/{id}:
-     *  delete:
      *      tags: [Users]
      *
      */
@@ -122,6 +121,26 @@
      *      tags: [Products]
      *
      */
+    /**
+     * @swagger
+     * tags:
+     *  name: Products
+     *
+     * /products/notification{storeid}:
+     *  get:
+     *      tags: [Products]
+     *
+     */
+    /**
+     * @swagger
+     * tags:
+     *  name: Products
+     *
+     * /products/notification{storeid}:
+     *  get:
+     *      tags: [Products]
+     *
+     */
 }
 //stores
 {
@@ -140,7 +159,17 @@
      * tags:
      *  name: Stores
      *
-     * /Stores/{id}:
+     * /Stores/:id:
+     *  get:
+     *      tags: [Stores]
+     *
+     */
+    /**
+     * @swagger
+     * tags:
+     *  name: Stores
+     *
+     * /reports/stores/:id/reports:
      *  get:
      *      tags: [Stores]
      *
@@ -160,7 +189,7 @@
      * tags:
      *  name: Stores
      *
-     * /stores/{id}:
+     * /stores/:id:
      *  put:
      *      tags: [Stores]
      *
@@ -174,7 +203,7 @@
      * tags:
      *  name: Customers
      *
-     * /customers/stores/{storeid}:
+     * /customers/stores/:storeid:
      *  get:
      *      tags: [Customers]
      *
@@ -184,7 +213,7 @@
      * tags:
      *  name: Customers
      *
-     * /customers/{id}:
+     * /customers/:id:
      *  get:
      *      tags: [Customers]
      *
@@ -204,72 +233,63 @@
      * tags:
      *  name: Customers
      *
-     * /customers/{id}:
+     * /customers/:id/reports:
+     *  get:
+     *      tags: [Customers]
+     *
+     */
+    /**
+     * @swagger
+     * tags:
+     *  name: Customers
+     *
+     * /customers/:id:
      *  put:
      *      tags: [Customers]
      *
      */
 }
 //exmployees
-/**
- * @swagger
- * tags:
- *  name: Employees
- *
- * /employees/stores/{storeid}:
- *  get:
- *      tags: [Employees]
- *
- */
-/**
- * @swagger
- * tags:
- *  name: Employees
- *
- * /employees/{id}:
- *  get:
- *      tags: [Employees]
- *
- */
-/**
- * @swagger
- * tags:
- *  name: Employees
- *
- * /employees:
- *  post:
- *      tags: [Employees]
- *
- */
-/**
- * @swagger
- * tags:
- *  name: Employees
- *
- * /employees/{id}:
- *  put:
- *      tags: [Employees]
- *
- */
-
-//employee
+{
+    /**
+     * @swagger
+     * tags:
+     *  name: Employees
+     *
+     * /employees/stores/:storeid:
+     *  get:
+     *      tags: [Employees]
+     *
+     */
+    /**
+     * @swagger
+     * tags:
+     *  name: Employees
+     *
+     * /employeess:
+     *  post:
+     *      tags: [Employees]
+     *
+     */
+    /**
+     * @swagger
+     * tags:
+     *  name: Employees
+     *
+     * /employees/:id:
+     *  put:
+     *      tags: [Employees]
+     *
+     */
+}
+//expense
 {
     /**
      * @swagger
      * tags:
      *  name: Expenses
      *
-     * /expenses/stores/{storeid}:
-     *  get:
-     *      tags: [Expenses]
-     *
-     */
-    /**
-     * @swagger
-     * tags:
-     *  name: Expenses
-     *
-     * /expenses/{id}:
+     * /expenses/stores/:storeid:
      *  get:
      *      tags: [Expenses]
      *
@@ -289,7 +309,7 @@
      * tags:
      *  name: Expenses
      *
-     * /expenses/{id}:
+     * /expenses/:id:
      *  put:
      *      tags: [Expenses]
      *
@@ -303,7 +323,7 @@
      * tags:
      *  name: Orders
      *
-     * /orders/stores/{storeid}:
+     * /orders/stores/:storeid:
      *  get:
      *      tags: [Orders]
      *
@@ -313,7 +333,7 @@
      * tags:
      *  name: Orders
      *
-     * /orders/{id}:
+     * /orders/:customerphone:
      *  get:
      *      tags: [Orders]
      *
@@ -328,16 +348,6 @@
      *      tags: [Orders]
      *
      */
-    /**
-     * @swagger
-     * tags:
-     *  name: Orders
-     *
-     * /orders/{id}:
-     *  put:
-     *      tags: [Orders]
-     *
-     */
 }
 
 //orderedProduct
@@ -347,7 +357,7 @@
      * tags:
      *  name: OrderedProducts
      *
-     * /orderedProducts/stores/{storeid}:
+     * /orderedproducts/orders/:orderId:
      *  get:
      *      tags: [OrderedProducts]
      *
@@ -357,29 +367,63 @@
      * tags:
      *  name: OrderedProducts
      *
-     * /orderedProducts/{id}:
-     *  get:
-     *      tags: [OrderedProducts]
-     *
-     */
-    /**
-     * @swagger
-     * tags:
-     *  name: OrderedProducts
-     *
-     * /employees:
+     * /orderedproducts:
      *  post:
      *      tags: [OrderedProducts]
      *
      */
+}
+
+//transfareedProducts
+{
+    /**
+     * @swagger
+     * tags:
+     *  name: TransfareedProducts
+     *
+     * /transfareedproducts:
+     *  get:
+     *      tags: [TransfareedProducts]
+     *
+     */
+    /**
+     * @swagger
+     * tags:
+     *  name: TransfareedProducts
+     *
+     * /transfareedproducts/stores/${storeId}:
+     *  get:
+     *      tags: [TransfareedProducts]
+     *
+     */
+    /**
+     * @swagger
+     * tags:
+     *  name: TransfareedProducts
+     *
+     * /transfareedproducts/stores/${storeId}/notifications:
+     *  get:
+     *      tags: [TransfareedProducts]
+     *
+     */
+    /**
+     * @swagger
+     * tags:
+     *  name: TransfareedProducts
+     *
+     * /transfareedproducts:
+     *  post:
+     *      tags: [TransfareedProducts]
+     *
+     */
     /**
      * @swagger
      * tags:
      *  name: OrderedProducts
      *
-     * /orderedProducts/{id}:
+     * /transfareedproducts:
      *  put:
-     *      tags: [OrderedProducts]
+     *      tags: [TransfareedProducts]
      *
      */
 }
@@ -401,28 +445,8 @@
      * tags:
      *  name: Categories
      *
-     * /categories/{id}:
-     *  get:
-     *      tags: [Categories]
-     *
-     */
-    /**
-     * @swagger
-     * tags:
-     *  name: Categories
-     *
      * /categories:
      *  post:
-     *      tags: [Categories]
-     *
-     */
-    /**
-     * @swagger
-     * tags:
-     *  name: Categories
-     *
-     * /categories/{id}:
-     *  put:
      *      tags: [Categories]
      *
      */
@@ -445,42 +469,34 @@
      * tags:
      *  name: Suppliers
      *
-     * /suppliers/{id}:
-     *  get:
-     *      tags: [Suppliers]
-     *
-     */
-    /**
-     * @swagger
-     * tags:
-     *  name: Suppliers
-     *
      * /suppliers:
      *  post:
      *      tags: [Suppliers]
      *
      */
-    /**
-     * @swagger
-     * tags:
-     *  name: Suppliers
-     *
-     * /suppliers/{id}:
-     *  put:
-     *      tags: [Suppliers]
-     *
-     */
 }
-//Reports
+//Dashboard
 {
     /**
      * @swagger
      * tags:
-     *  name: Reports
+     *  name: Dashboard
      *
-     * /reports/{reportType}:
+     * /dashboard/stores/:storeid:
+     *  get:
+     *      tags: [Dashboard]
+     *
+     */
+} //Payment
+{
+    /**
+     * @swagger
+     * tags:
+     *  name: Payment
+     *
+     * /payments:
      *  post:
-     *      tags: [Reports]
+     *      tags: [Payment]
      *
      */
 }

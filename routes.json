@@ -4,7 +4,6 @@
         "getUsers": "/users",
         "addUser": "/users",
         "updateUser": "/users/:id",
-        "deleteUser": "/users/:id",
         "update": {
             "updateUser": "/users/:id"
         },
@@ -19,23 +18,20 @@
         },
         "getProductsNotifications": "/productss",
         "addProduct": "/prodcuts",
-        "updateProduct": "/products/:id",
-        "productsreport": "/products/reports/:from/:to"
+        "updateProduct": "/products/:id"
     },
     "customer": {
         "get": {
             "getCustomers": "/customers/stores/:storeid",
             "getCustomerReport": "/customers/:id/reports",
-            "getCustomer": "/customers/:id",
-            "getCustomersForSpecificStore": "/customers/store/:storeid"
+            "getCustomer": "/customers/:id"
         },
         "addCustomer": "/customers/",
         "updateCustomer": "/customers/:id"
     },
     "employee": {
         "get": {
-            "getEmployees": "/employees/stores/:storeid",
-            "getEmployee": "/employees/:id"
+            "getEmployees": "/employees/stores/:storeid"
         },
         "addEmployee": "/employees",
         "updateEmployee": "/employees/:id"
@@ -45,46 +41,34 @@
         "getStores": "/stores",
         "getStore": "/stores/:id",
         "updateStore": "/stores/:id",
-        "reportStore": "/stores/:id/reports/:from/:to",
-        "storeReportById": "/reports/stores/:id"
+        "storeReportById": "/stores/:id/reports"
     },
     "expense": {
         "get": {
-            "getExpense": "/expenses/:id",
             "getExpenses": "/expenses/stores/:storeid"
         },
         "addExpense": "/expenses",
-        "updateExpense": "/expenses/:id",
-        "reportExpense": "/expenses/stores/:storeid/reports/:from/:to"
+        "updateExpense": "/expenses/:id"
     },
     "category": {
         "get": {
-            "getCategory": "/categories/:id",
             "getCategories": "/categories"
         },
-        "addCategory": "/categories",
-        "updateCategory": "/categories/:id"
+        "addCategory": "/categories"
     },
     "supplier": {
         "get": {
-            "getSupplier": "/suppliers/:id",
             "getSuppliers": "/suppliers"
         },
-        "addSupplier": "/suppliers",
-        "updateSupplier": "/suppliers/:id"
+        "addSupplier": "/suppliers"
     },
     "order": {
         "getOrders": "/orders/stores/:storeid",
-        "getOrder": "/orders/:id",
         "addOrder": "/orders",
-        "updateOrder": "/orders/:id",
         "getOrdersByCustomerId": "/orders/customers/:customerphone"
     },
     "orderedProduct": {
-        "getOrderedProducts": "/orderedproducts",
-        "getOrderedProduct": "/orderedproducts/:id",
         "addOrderedProduct": "/orderedproducts",
-        "updateOrderedProduct": "/orderedproducts/:id",
         "getOrderedproductsbyOrderId": "/orderedproducts/orders/:id"
     },
     "TransfareedProduct": {
@@ -93,17 +77,10 @@
         "getTransfareedProduct": "/transfareedproducts/:id",
         "addTransfareedproduct": "/transfareedproducts",
         "updateTransfareedProduct": "/transfareedproducts/:id",
-        "reportTransfareedProduct": "/transfareedproducts/reports/:from/:to/stores/:storeid",
         "getTransfareedProductsNotifications": "/transfareedproducts/stores/:id/notifications"
     },
     "Payment": {
-        "getPayments": "/payments",
-        "getPayment": "/payments/:id",
-        "addPayment": "/payments",
-        "updatePayment": "/payments/:id"
-    },
-    "report": {
-        "transfareedproductsReport": "/reports"
+        "addPayment": "/payments"
     },
     "dashboard": {
         "getDashboard": "/dashboard/stores/:storeid"

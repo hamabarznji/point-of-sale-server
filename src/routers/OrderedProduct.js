@@ -9,17 +9,18 @@ router.post(
     verifyAuth,
     OrderedProduct.addOrderedProduct
 );
-router.get(
-    routes.orderedProduct.getOrderedProducts,
-    verifyAuth,
-    OrderedProduct.getAll
-);
+
 router.get(
     routes.orderedProduct.getOrderedproductsbyOrderId,
     verifyAuth,
     OrderedProduct.getOrderedProductsbyId
 );
-
+/* 
+router.get(
+    routes.orderedProduct.getOrderedProducts,
+    verifyAuth,
+    OrderedProduct.getAll
+);
 router.get(
     routes.orderedProduct.getOrderedProduct,
     verifyAuth,
@@ -29,6 +30,6 @@ router.put(
     routes.orderedProduct.updateOrderedProduct,
     verifyAuth,
     OrderedProduct.updateOrderedProduct
-);
+); */
 
 module.exports = router;

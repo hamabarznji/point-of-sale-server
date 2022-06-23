@@ -26,7 +26,7 @@ async function getCustomers(req, res, next) {
     }
 }
 
-async function getCustomersForSpecificStore(req, res, next) {
+/* async function getCustomersForSpecificStore(req, res, next) {
     try {
         const customers = await Customer.getCustomersForSpecificStore(
             req.params.storeid
@@ -36,7 +36,7 @@ async function getCustomersForSpecificStore(req, res, next) {
     } catch (erorr) {
         res.status(404).send(erorr);
     }
-}
+} */
 async function getCustomer(req, res, next) {
     try {
         const customers = await Customer.getCustomer(req.params.id);
@@ -177,7 +177,7 @@ module.exports = {
     getCustomers,
     getCustomer,
     updateCustomer,
-    getCustomersForSpecificStore,
+    // getCustomersForSpecificStore,
     debtReport,
     customerReport,
 };

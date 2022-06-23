@@ -6,7 +6,7 @@ const Order = require("../controllers/Order");
 
 router.post(routes.order.addOrder, verifyAuth, Order.addOrder);
 router.get(routes.order.getOrders, verifyAuth, Order.getOrders);
-router.get(routes.order.getOrder, verifyAuth, Order.getOrder);
+//router.get(routes.order.getOrder, verifyAuth, Order.getOrder);
 
 router.get(
     routes.order.getOrdersByCustomerId,
