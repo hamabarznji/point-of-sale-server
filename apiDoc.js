@@ -492,11 +492,11 @@
     /**
      * @swagger
      * tags:
-     *  name: Payment
+     *  name: Payments
      *
      * /payments:
      *  post:
-     *      tags: [Payment]
+     *      tags: [Payments]
      *
      */
 }
