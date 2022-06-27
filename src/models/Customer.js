@@ -39,7 +39,7 @@ const Customer = sequelize.define(
     }
 );
 Customer.sync({ alter: true })
-    .then((data) => console.log(data, "Customer table created"))
+    .then((data) => console.log("Customer table created"))
     .catch((err) => console.log(err));
 
 module.exports = Customer;

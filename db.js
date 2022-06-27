@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize("point-of-sale", "root", "", {
+const dbName = "point-of-sale";
+const sequelize = new Sequelize(dbName, "root", "", {
     host: "localhost",
 
     dialect: "mysql",

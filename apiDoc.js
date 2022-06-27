@@ -53,7 +53,7 @@
      * tags:
      *  name: Users
      *
-     * /users/{id}:
+     * /users/:id:
      *  get:
      *      tags: [Users]
      *
@@ -73,7 +73,7 @@
      * tags:
      *  name: Users
      *
-     * /users/{id}:
+     * /users/:id:
      *  put:
      *      tags: [Users]
      *
@@ -96,7 +96,7 @@
      * tags:
      *  name: Products
      *
-     * /prodcuts/{id}:
+     * /prodcuts/:id:
      *  get:
      *      tags: [Products]
      *
@@ -116,7 +116,7 @@
      * tags:
      *  name: Products
      *
-     * /products/{id}:
+     * /products/:id:
      *  put:
      *      tags: [Products]
      *
@@ -126,17 +126,7 @@
      * tags:
      *  name: Products
      *
-     * /products/notification{storeid}:
-     *  get:
-     *      tags: [Products]
-     *
-     */
-    /**
-     * @swagger
-     * tags:
-     *  name: Products
-     *
-     * /products/notification{storeid}:
+     * /products/stores/:storeid/notifications:
      *  get:
      *      tags: [Products]
      *
@@ -391,7 +381,7 @@
      * tags:
      *  name: TransfareedProducts
      *
-     * /transfareedproducts/stores/${storeId}:
+     * /transfareedproducts/stores/:storeId:
      *  get:
      *      tags: [TransfareedProducts]
      *
@@ -401,7 +391,7 @@
      * tags:
      *  name: TransfareedProducts
      *
-     * /transfareedproducts/stores/${storeId}/notifications:
+     * /transfareedproducts/stores/:storeId/notifications:
      *  get:
      *      tags: [TransfareedProducts]
      *

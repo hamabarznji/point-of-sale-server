@@ -65,6 +65,10 @@ async function addUser(req, res, next) {
             role: req.body.role,
             store_id: req.body.store_id,
         });
+        console.log(
+            user,
+            "hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        );
         res.status(200).send(user);
     } catch (erorr) {
         res.status(404).send(erorr);

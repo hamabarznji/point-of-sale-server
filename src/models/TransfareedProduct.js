@@ -62,7 +62,7 @@ TransfareedProduct.belongsTo(Product, {
     targetKey: "id",
 });
 TransfareedProduct.sync({ alter: true })
-    .then((data) => console.log(data, "Transfareed Product table created"))
+    .then((data) => console.log("Transfareed Product table created"))
     .catch((err) => console.log(err));
 
 module.exports = TransfareedProduct;

@@ -41,7 +41,7 @@ const Store = sequelize.define(
     }
 );
 Store.sync({ alter: true })
-    .then((data) => console.log(data, "Store table created"))
+    .then((data) => console.log("Store table created"))
     .catch((err) => console.log(err));
 
 module.exports = Store;

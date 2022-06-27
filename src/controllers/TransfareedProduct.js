@@ -1,8 +1,8 @@
 const TransfareedProduct = require("../services/TransfareedProduct");
 const Product = require("../services/Product");
 const { totalPriceCalculator } = require("../helper/reuseableFuncctions");
+const Store = require("../services/Store");
 async function addTransfareedProduct(req, res, next) {
-    console.log(req.body);
     try {
         const { product_id, weight, qty } = req.body;
         if (req.body.weight > 0 && req.body.qty > 0) {
@@ -98,7 +98,7 @@ async function getAllTransfareedProductsWithAssociatedTables(req, res, next) {
         res.status(404).send(erorr);
     }
 }
-async function transfarredProductsReport(req, res, next) {
+/* async function transfarredProductsReport(req, res, next) {
     try {
         const transfareedProducts =
             await TransfareedProduct.transfarredProductsReport(
@@ -129,13 +129,15 @@ async function transfarredProductsReport(req, res, next) {
     } catch (erorr) {
         res.status(404).send(erorr);
     }
-}
+} */
 async function getTransfareedProductsNotifications(req, res, next) {
     try {
         const data =
             await TransfareedProduct.getTransfareedProductsNotifications(
                 req.params.id
             );
+
+        const store = await Store.getStore(req.params.id);
         const products = data.map((product) => {
             return {
                 qty: product.qty,
@@ -143,6 +145,7 @@ async function getTransfareedProductsNotifications(req, res, next) {
                 name: product.product.name,
                 color: product.product.color,
                 place: "store",
+                storeName: store.name,
             };
         });
 
@@ -157,6 +160,5 @@ module.exports = {
     getTransfareedProducts,
     getTransfareedProduct,
     getAllTransfareedProductsWithAssociatedTables,
-    transfarredProductsReport,
     getTransfareedProductsNotifications,
 };

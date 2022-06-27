@@ -38,7 +38,7 @@ const Supplier = sequelize.define(
     }
 );
 Supplier.sync()
-    .then((data) => console.log(data, "Supplier table created"))
+    .then((data) => console.log("Supplier table created"))
     .catch((err) => console.log(err));
 
 module.exports = Supplier;

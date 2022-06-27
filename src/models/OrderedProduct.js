@@ -63,9 +63,7 @@ Order.hasMany(OrderedProduct, {
 });
 
 OrderedProduct.sync({ alter: true })
-    .then((data) =>
-        console.log(data, "Ordereded Product Product table created")
-    )
+    .then((data) => console.log("Ordereded Product Product table created"))
     .catch((err) => console.log(err));
 
 module.exports = OrderedProduct;

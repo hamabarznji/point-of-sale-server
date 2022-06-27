@@ -66,7 +66,7 @@ Product.belongsTo(Category, { foreignKey: "category_id", targetKey: "id" });
 Category.hasMany(Product, { foreignKey: "category_id", targetKey: "id" });
 Supplier.hasMany(Product, { foreignKey: "supplier_id", targetKey: "id" });
 Product.sync({ forceUpdate: true })
-    .then((data) => console.log(data, "Product table created"))
+    .then((data) => console.log("Product table created"))
     .catch((err) => console.log(err));
 
 module.exports = Product;

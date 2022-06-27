@@ -61,4 +61,5 @@ app.use(SwaggerRouter);
 
 app.listen(3002, () => console.log(`Listening on port 3002`));
 
+module.exports = app;
 ////sudo /opt/lampp/lampp start

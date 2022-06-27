@@ -34,7 +34,7 @@ async function getProduct(id) {
     }
 }
 
-async function productsReport(fromDate, toDate) {
+/* async function productsReport(fromDate, toDate) {
     try {
         return await Product.findAll({
             include: { all: true },
@@ -47,7 +47,7 @@ async function productsReport(fromDate, toDate) {
     } catch (err) {
         return err.message;
     }
-}
+} */
 
 async function getProductsNotifications() {
     try {
@@ -91,6 +91,6 @@ module.exports = {
     getProducts,
     updateProduct,
     getProduct,
-    productsReport,
+
     getProductsNotifications,
 };

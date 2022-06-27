@@ -48,7 +48,7 @@ Store.hasMany(User, { foreignKey: "store_id", sourceKey: "id" });
 User.belongsTo(Store, { foreignKey: "store_id", targetKey: "id" });
 
 User.sync({ alter: true })
-    .then((data) => console.log(data, "User table created"))
+    .then((data) => console.log("User table created"))
     .catch((err) => console.log(err));
 
 module.exports = User;

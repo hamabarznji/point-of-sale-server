@@ -14,9 +14,11 @@ async function addStore(req, res, next) {
 
 async function getStores(req, res, next) {
     try {
-        const stores = await Store.getStores();
-
-        res.status(200).send(stores);
+        const data = await Store.getStores();
+        /*      const stores = data.map((store) => {
+            return { id: store.id, name: store.name };
+        }); */
+        res.status(200).send(data);
     } catch (erorr) {
         res.status(404).send(erorr);
     }

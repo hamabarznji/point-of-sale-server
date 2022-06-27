@@ -15,11 +15,7 @@ router.get(
     verifyAuth,
     TransfareedProduct.getTransfareedProductsNotifications
 );
-router.get(
-    routes.TransfareedProduct.getTransfareedProducts,
-    verifyAuth,
-    TransfareedProduct.getAllTransfareedProductsWithAssociatedTables
-);
+
 router.get(
     routes.TransfareedProduct.getTransfareedProductsBystoreId,
     verifyAuth,
@@ -39,4 +35,9 @@ router.put(
             routes.TransfareedProduct.reportTransfareedProduct,
             TransfareedProduct.transfarredProductsReport
         ); */
+/* router.get(
+    routes.TransfareedProduct.getTransfareedProducts,
+    verifyAuth,
+    TransfareedProduct.getAllTransfareedProductsWithAssociatedTables
+); */
 module.exports = router;

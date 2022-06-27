@@ -72,7 +72,7 @@ User.hasMany(Order, { foreignKey: "user_id", sourceKey: "id" });
 Customer.hasMany(Order, { foreignKey: "customer_phone", sourceKey: "id" });
 
 Order.sync({ alter: true })
-    .then((data) => console.log(data, "Order table created"))
+    .then((data) => console.log("Order table created"))
     .catch((err) => console.log(err));
 
 module.exports = Order;
