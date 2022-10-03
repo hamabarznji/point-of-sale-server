@@ -4,7 +4,7 @@ const verifyAuth = require("../../middleware/verifyAuth");
 
 const Customer = require("../controllers/Customer");
 
-router.get(routes.customer.get.getCustomers, verifyAuth, Customer.getCustomers);
+router.get(routes.customer.get.getCustomers, Customer.getCustomers);
 
 router.get(
     routes.customer.get.getCustomerReport,

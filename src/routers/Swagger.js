@@ -9,7 +9,7 @@ const swaggerOptions = {
             title: "Point of Sale",
             description: "All the system URI",
             contact: {
-                name: "Amazing Developer",
+                name: "Mohammed Othman",
             },
             servers: [{ url: "http://localhost:3002" }],
         },
